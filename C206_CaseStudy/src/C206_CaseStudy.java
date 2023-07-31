@@ -17,7 +17,7 @@ public class C206_CaseStudy {
 			option = Helper.readInt("Enter an option > ");
 			
 			if (option == 1) {
-				
+				userMenu();
 			} else if (option == 2) {
 				
 			} else if (option == 3) {
@@ -46,7 +46,7 @@ public class C206_CaseStudy {
 		System.out.println("5. Maintain Payments");
 		System.out.println("6. Exit");
 	}
-	private static void UserMenu() {
+	private static void userMenu() {
 		Helper.line(80, "=");
 		System.out.println("USER MENU");
 		Helper.line(80, "=");
