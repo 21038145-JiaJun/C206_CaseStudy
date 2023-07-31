@@ -31,5 +31,15 @@ public class C206_CaseStudy {
 		System.out.println("6. Exit");
 		
 	}
+	private static void UserMenu() {
+		Helper.line(80, "=");
+		System.out.println("USER MENU");
+		Helper.line(80, "=");
+		System.out.println("1. Add a new user");
+		System.out.println("2. View All Users");
+		System.out.println("3. Delete an existing user");
+		System.out.println("4. Exit");
+		
+	}
 	
 }
