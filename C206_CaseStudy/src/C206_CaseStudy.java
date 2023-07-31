@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 public class C206_CaseStudy {
 
@@ -16,6 +16,22 @@ public class C206_CaseStudy {
 			
 			option = Helper.readInt("Enter an option > ");
 			
+			if (option == 1) {
+				
+			} else if (option == 2) {
+				
+			} else if (option == 3) {
+				
+			} else if (option == 4) {
+				
+			} else if (option == 5) {
+				
+			} else if (option == 6) {
+				
+			} else {
+				System.out.println("Invalid option");
+			}
+			
 		}
 	}
 	
@@ -29,7 +45,6 @@ public class C206_CaseStudy {
 		System.out.println("4. Maintain Bids");
 		System.out.println("5. Maintain Payments");
 		System.out.println("6. Exit");
-		
 	}
 	private static void UserMenu() {
 		Helper.line(80, "=");
