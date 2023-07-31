@@ -15,7 +15,7 @@ public class C206_CaseStudyTest {
 	private User u5;
 	private User u6;
 	
-	private ArrayList<User> userList;
+	private ArrayList<User> UserList;
 	
 	public C206_CaseStudyTest() {
 		super();
@@ -32,7 +32,7 @@ public class C206_CaseStudyTest {
 		u5 = new User("Rena" , 24748493, "Ren35A" , "rena89@yahoo.com");
 		u6 = new User("Jason" , 98365748 , "JaS3n" , "jasON23@yahoo.com");
 	
-		userList= new ArrayList<User>();
+		UserList= new ArrayList<User>();
 	
 	}
 
@@ -53,7 +53,7 @@ public class C206_CaseStudyTest {
 		u4 = null;
 		u5 = null;
 		u6 = null;
-		userList = null;
+		UserList = null;
 
 	}
 }

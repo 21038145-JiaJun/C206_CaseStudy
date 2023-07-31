@@ -73,10 +73,22 @@ public class C206_CaseStudy {
 	private static void user() {
 		int option = -99;
 		userMenu();
+		option = Helper.readInt("Enter an option >");
 		while (option != EXIT) {
-
+			if (option == ADD) {
+				//Add a new user
+				
+				
+			} else if (option == VIEW_ALL) {
+				//View All Users
+				
+			} else if (option == DELETE) {
+				//Delete an existing user
+				
+			}
 		}
 	}
+
 
 	private static void userMenu() {
 		C206_CaseStudy.setHeader("USER MENU");
@@ -85,6 +97,31 @@ public class C206_CaseStudy {
 		System.out.println("3. Delete an existing user");
 		System.out.println("4. Exit");
 	}
+	
+	public static void addUser(ArrayList<User> UserList , User u) {
+		User user;
+		for(int i = 0; i < UserList.size(); i++) {
+			user = UserList.get(i);
+			if (user.getName().equalsIgnoreCase(user.getName()) )
+				return;
+		}
+		if ((u.getName().isEmpty()) || (u.getPw().isEmpty()) ) {
+			return;
+		}
+		
+		UserList.add(u);
+	}
+	
+	public static void ViewAllUsers(ArrayList<User> UserList , User u) {
+		
+		
+	}
+	
+	public static void deleteUser(ArrayList<User> UserList , User u) {
+		
+	}
+	
+	
 
 	// ================================= Option 4: Bids (Jia Jun)
 	// =================================
