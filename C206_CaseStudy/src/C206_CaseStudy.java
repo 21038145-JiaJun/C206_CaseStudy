@@ -12,12 +12,12 @@ public class C206_CaseStudy {
 		int option = -99;
 		
 		while (option != 6) {
-			loginMenu();
+			mainMenu();
 			
 			option = Helper.readInt("Enter an option > ");
 			
 			if (option == 1) {
-				userMenu();
+				user();
 			} else if (option == 2) {
 				
 			} else if (option == 3) {
@@ -35,7 +35,8 @@ public class C206_CaseStudy {
 		}
 	}
 	
-	private static void loginMenu() {
+	//Display the main menu options
+	private static void mainMenu() {
 		Helper.line(80, "=");
 		System.out.println("CAMPUS ONLINE AUCTION SHOP (COAS)");
 		Helper.line(80, "=");
@@ -46,6 +47,16 @@ public class C206_CaseStudy {
 		System.out.println("5. Maintain Payments");
 		System.out.println("6. Exit");
 	}
+	
+	//================================= Option 1: Users (Cedric) =================================
+	private static void user() {
+		int option = -99; 
+		userMenu();
+		while (option != 1) {
+			
+		}
+	}
+	
 	private static void userMenu() {
 		Helper.line(80, "=");
 		System.out.println("USER MENU");
@@ -55,5 +66,7 @@ public class C206_CaseStudy {
 		System.out.println("3. Delete an existing user");
 		System.out.println("4. Exit");
 	}
+	
+	//================================= Option 1-6: [Function] ([Name]) =================================
 	
 }

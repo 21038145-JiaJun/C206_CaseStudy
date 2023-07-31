@@ -1,7 +1,8 @@
 
 public class Payment {
 	
-	private User user;
+	private int itemID;
+	private double price;
 	
 	
 }
