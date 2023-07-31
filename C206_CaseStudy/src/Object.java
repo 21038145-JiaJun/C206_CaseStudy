@@ -6,7 +6,7 @@ public class Object extends Item{
 		this.price = price;
 	}
 
-	public int getOpticalZoom() {
+	public int getPrice() {
 		return price;
 	}
 	
