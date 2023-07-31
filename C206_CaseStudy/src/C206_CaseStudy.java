@@ -29,6 +29,7 @@ public class C206_CaseStudy {
 		System.out.println("4. Maintain Bids");
 		System.out.println("5. Maintain Payments");
 		System.out.println("6. Exit");
+		
 	}
 	
 }
