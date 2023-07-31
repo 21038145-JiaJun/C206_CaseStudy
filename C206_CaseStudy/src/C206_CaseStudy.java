@@ -11,7 +11,7 @@ public class C206_CaseStudy {
 	private static void launch() {
 		int option = -99;
 		
-		while (option != 3) {
+		while (option != 6) {
 			loginMenu();
 			
 			option = Helper.readInt("Enter an option > ");
@@ -23,9 +23,12 @@ public class C206_CaseStudy {
 		Helper.line(80, "=");
 		System.out.println("CAMPUS ONLINE AUCTION SHOP (COAS)");
 		Helper.line(80, "=");
-		System.out.println("1. Register a user");
-		System.out.println("2. Login");
-		System.out.println("3. Exit");
+		System.out.println("1. Maintain Users");
+		System.out.println("2. Maintain Auctions");
+		System.out.println("3. Maintain Items");
+		System.out.println("4. Maintain Bids");
+		System.out.println("5. Maintain Payments");
+		System.out.println("6. Exit");
 	}
 	
 }
