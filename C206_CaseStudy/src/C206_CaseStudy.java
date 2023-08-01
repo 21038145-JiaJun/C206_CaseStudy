@@ -68,8 +68,7 @@ public class C206_CaseStudy {
 		Helper.line(80, "-");
 	}
 
-	// ================================= Option 1: Users (Cedric)
-	// =================================
+	// ================================= Option 1: Users (Cedric) =================================
 	private static void user() {
 		int option = -99;
 		userMenu();
@@ -123,8 +122,7 @@ public class C206_CaseStudy {
 	
 	
 
-	// ================================= Option 4: Bids (Jia Jun)
-	// =================================
+	// ================================= Option 4: Bids (Jia Jun) =================================
 
 	private static void bidMenu() {
 		C206_CaseStudy.setHeader("BID MENU");
@@ -162,7 +160,6 @@ public class C206_CaseStudy {
 
 		itemList.add(it);
 	}
-	// ================================= Option 1-6: [Function] ([Name])
-	// =================================
+	// ================================= Option 1-6: [Function] ([Name]) =================================
 
 }
