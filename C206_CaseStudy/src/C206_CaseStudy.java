@@ -162,11 +162,11 @@ public class C206_CaseStudy {
 		itemList.add(it);
 	}
 	
-	private static void viewAllBids() {
+	private static void viewAllBids(ArrayList<Item> itemList, Item it) {
 		
 	}
 	
-	private static void deleteBid() {
+	private static void deleteBid(ArrayList<Item> itemList, Item it) {
 		
 	}
 	// ================================= Option 1-6: [Function] ([Name]) =================================
