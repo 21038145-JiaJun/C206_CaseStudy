@@ -137,11 +137,12 @@ public class C206_CaseStudy {
 		bidMenu();
 		while (option != EXIT) {
 			if (option == ADD) {
+				//Add Bid
 				
 			} else if (option == VIEW_ALL) {
-				
+				//View All Bids
 			} else if (option == DELETE) {
-				
+				// Delete Bid
 			}
 		}
 	}
@@ -159,6 +160,14 @@ public class C206_CaseStudy {
 		}
 
 		itemList.add(it);
+	}
+	
+	private static void viewAllBids() {
+		
+	}
+	
+	private static void deleteBid() {
+		
 	}
 	// ================================= Option 1-6: [Function] ([Name]) =================================
 
