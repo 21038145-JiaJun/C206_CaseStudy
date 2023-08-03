@@ -22,7 +22,7 @@ public class C206_CaseStudy {
 
 	private static void launch() {
 
-		ArrayList<Item> itemList = new ArrayList<Item>();
+		ArrayList<Object> objectList = new ArrayList<Object>();
 
 		int option = -99;
 
@@ -148,25 +148,28 @@ public class C206_CaseStudy {
 	}
 	
 
-	private static void addBid(ArrayList<Item> itemList, Item it) {
-		Item item;
-		for (int i = 0; i < itemList.size(); i++) {
-			item = itemList.get(i);
-			if (item.getAssetTag().equalsIgnoreCase(item.getAssetTag()))
-				return;
-		}
-		if ((it.getAssetTag().isEmpty()) || (it.getDescription().isEmpty())) {
-			return;
-		}
+	private static void addBid(ArrayList<Item> itemList) {
+//		C206_CaseStudy.viewAllItems(itemList);
+		String tag = Helper.readString("Enter asset tag > ");
+		double newBid = Helper.readDouble("Enter new bid > $");
 
-		itemList.add(it);
+//		for (int i = 0; i < itemList.size(); i++) {
+//			item = itemList.get(i);
+//			if (item.getAssetTag().equalsIgnoreCase(item.getAssetTag()))
+//				return;
+//		}
+//		if ((item.getAssetTag().isEmpty()) || (item.getDescription().isEmpty())) {
+//			return;
+//		}
+//
+//		itemList.add(item);
 	}
 	
-	private static void viewAllBids(ArrayList<Item> itemList, Item it) {
+	private static void viewAllBids(ArrayList<Item> itemList, Bid b) {
 		
 	}
 	
-	private static void deleteBid(ArrayList<Item> itemList, Item it) {
+	private static void deleteBid(ArrayList<Item> itemList, Bid b) {
 		
 	}
 	// ================================= Option 1-6: [Function] ([Name]) =================================
