@@ -13,16 +13,20 @@ public class C206_CaseStudy {
 	private static final int VIEW_ALL = 2;
 	private static final int DELETE = 3;
 	private static final int EXIT = 4;
+	
+	private static ArrayList<Payment> paymentList = new ArrayList<Payment>();
+	private static ArrayList<Object> objectList = new ArrayList<Object>();
+	private static ArrayList<Item> itemList = new ArrayList<Item>();
+	private static ArrayList<User> userList = new ArrayList<User>();
+	private static ArrayList<Auction> auctionList = new ArrayList<Auction>();
+	private static ArrayList<Bid> bidList = new ArrayList<Bid>();
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		launch();
-
 	}
 
 	private static void launch() {
-
-		ArrayList<Object> objectList = new ArrayList<Object>();
 
 		int option = -99;
 
@@ -40,9 +44,9 @@ public class C206_CaseStudy {
 			} else if (option == OPTION_BID) {
 				bid();
 			} else if (option == OPTION_PAYMENT) {
-
+				payment();
 			} else if (option == OPTION_QUIT) {
-
+				
 			} else {
 				System.out.println("Invalid option");
 			}
@@ -172,6 +176,64 @@ public class C206_CaseStudy {
 	private static void deleteBid(ArrayList<Item> itemList, Bid b) {
 		
 	}
-	// ================================= Option 1-6: [Function] ([Name]) =================================
 
+	
+	// ================================= Option 5: Payment (Ivan) =================================
+
+	private static void paymentMenu() {
+		C206_CaseStudy.setHeader("PAYMENT MENU");
+		System.out.println("1. Add a New Bid");
+		System.out.println("2. View All Bids");
+		System.out.println("3. Delete an Existing Bid");
+		System.out.println("4. Exit");
+	}
+
+	private static void payment() {
+		int option = -99;
+		paymentMenu();
+		while (option != EXIT) {
+			if (option == ADD) {
+				//Add Payment
+				
+			} else if (option == VIEW_ALL) {
+				//View All Payment
+				
+			} else if (option == DELETE) {
+				// Delete Payment
+				
+			}
+		}
+	}
+	
+
+	private static void addPayment(ArrayList<Payment> paymentList) {
+//		C206_CaseStudy.viewAllPayment(paymentList);
+		String tag = Helper.readString("Enter asset tag > ");
+		double newBid = Helper.readDouble("Enter new bid > $");
+
+//		for (int i = 0; i < paymentList.size(); i++) {
+//			payment = paymentList.get(i);
+//			if (payment.getAssetTag().equalsIgnoreCase(payment.getAssetTag()))
+//				return;
+//		}
+//		if ((item.getAssetTag().isEmpty()) || (item.getDescription().isEmpty())) {
+//			return;
+//		}
+//
+//		itemList.add(item);
+	}
+	
+	private static void viewAllPayment(ArrayList<Payment> paymentList) {
+		
+	}
+	
+	private static void deletePayment(ArrayList<Payment> paymentList) {
+		
+	}
+	
+	
+	// ================================= Option 1-6: [Function] ([Name]) =================================
+	
+	
+	
 }
