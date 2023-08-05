@@ -113,7 +113,7 @@ public class OnlineAuctionShop {
 			for (User user : userList) {
 				output += String.format("%-12d %-15d %-25s %-10s\n", 
 						user.getName(), user.getId() , user.getPw() , user.getEmail());
-			}
+			 }
 			Helper.line(80, "=");
 			System.out.println(output);
 		}

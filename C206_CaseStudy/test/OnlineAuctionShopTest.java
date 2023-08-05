@@ -66,7 +66,7 @@ public class OnlineAuctionShopTest {
 	// ================================= Test Option 5: Payment (Ivan) =================================
 	@Test
 	public void OnlineAuctionShop_testAddPayment() {
-		//Add a new user
+		 //Add a new user 
 		  
 		
 		
