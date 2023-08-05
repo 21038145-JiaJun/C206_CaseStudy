@@ -26,7 +26,6 @@ public class Payment {
 		return paymentID;
 	}
 
-	
 	public Auction getAuction() {
 		return auction;
 	}
