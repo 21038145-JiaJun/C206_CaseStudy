@@ -28,7 +28,7 @@ public class OnlineAuctionShop {
 
 	private static void launch() {
 		
-
+		
 		
 		int option = -99;
 
@@ -218,15 +218,70 @@ public class OnlineAuctionShop {
 		
 		if (paymentType.equalsIgnoreCase("add")) {
 			
+			boolean auctionExist = false;
+			boolean itemExist = false;
+			boolean paymentExist = false;
+			
 			int auctionID = Helper.readInt("Enter Auction ID > ");
-			String tag = Helper.readString("Enter Asset Tag > ");
+			String assetTag = Helper.readString("Enter Asset Tag > ");
 			
 			
 			for (Auction auction : auctionList) {
-				if ()
+				if (auction.getAuctionID() == auctionID) {
+					auctionExist = true;
+					break;
+				}
 			}
 			
+			if (auctionExist == true) {
+				for (Item item : itemList) {
+					if (item.getAssetTag() == assetTag) {
+						itemExist = true;
+						break;
+					}
+				}
+			} else {
+				System.out.println("Invalid Auction ID");
+			}
+			
+			if (itemExist == true) {
+				for (Payment payment : paymentList) {
+					if (payment == assetTag) {
+						itemExist = true;
+						break;
+					}
+				}
+			}
+			
+			
+			
 		} else if (paymentType.equalsIgnoreCase("make")) {
+			
+			viewAllPayment(paymentList);
+			int auctionID = Helper.readInt("Enter Auction ID > ");
+			boolean auctionExist = false;
+			
+			for (Payment payment : paymentList) {
+				if (payment.getAuction().getAuctionID() == auctionID) {
+					
+					auctionExist = true;
+					double amount = Helper.readDouble("Enter amount to pay > ");
+					
+					if (amount >= payment.getAuction().getCurrentBid()) {
+						
+						payment.makePayment();
+						double change = amount - payment.getAuction().getCurrentBid();
+						System.out.println(String.format("Your change is $%.2f", change));
+						
+					} else {
+						System.out.println("Insufficient amount to pay");
+					}
+				}
+			}
+			
+			if (auctionExist = false) {
+				System.out.println("Invalid Auction ID");
+			}
 			
 		} else {
 			System.out.println("Invalid option");
@@ -237,12 +292,12 @@ public class OnlineAuctionShop {
 	
 	private static void viewAllPayment(ArrayList<Payment> paymentList) {
 		
-		String output = String.format("%-12s %-15s %-25s %-10s %-10s\n", "AuctionID", "ItemAssetTag", "Description", "Price", "Paid");
+		String output = String.format("%-12s %-12s %-15s %-25s %-10s %-10s\n", "PaymentID", "AuctionID", "ItemAssetTag", "Description", "Price", "Paid");
 		
 		for (Payment payment : paymentList) {
-			output += String.format("%-12d %-15s %-25s %-10.2f %-10s\n", 
-					payment.getAuction().getAuctionID(), payment.getItem().getAssetTag(), payment.getItem().getDescription(),
-					payment.getAuction().getCurrentBid(), payment.isPaid());
+			output += String.format("%-12d %-12d %-15s %-25s %-10.2f %-10s\n", 
+					payment.getPaymentID(), payment.getAuction().getAuctionID(), payment.getItem().getAssetTag(),
+					payment.getItem().getDescription(), payment.getAuction().getCurrentBid(), payment.isPaid());
 		}
 		Helper.line(80, "=");
 		System.out.println(output);
