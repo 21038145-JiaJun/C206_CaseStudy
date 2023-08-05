@@ -27,7 +27,15 @@ public class C206_CaseStudy {
 	}
 
 	private static void launch() {
-
+		
+		Auction a1 = new Auction(1, "A beautiful description", 100.50);
+		Item i1 = new Item("I1", "Item is an Item");
+		Payment p1 = new Payment(a1, i1, true);
+		
+		auctionList.add(a1);
+		itemList.add(i1);
+		paymentList.add(p1);
+		
 		int option = -99;
 
 		while (option != 6) {
@@ -182,34 +190,37 @@ public class C206_CaseStudy {
 
 	private static void paymentMenu() {
 		C206_CaseStudy.setHeader("PAYMENT MENU");
-		System.out.println("1. Add a New Bid");
-		System.out.println("2. View All Bids");
-		System.out.println("3. Delete an Existing Bid");
+		System.out.println("1. Add a New Payment");
+		System.out.println("2. View All Payment");
+		System.out.println("3. Delete an Existing Payment");
 		System.out.println("4. Exit");
 	}
 
 	private static void payment() {
 		int option = -99;
-		paymentMenu();
+		
 		while (option != EXIT) {
+			
+			paymentMenu();
+			option = Helper.readInt("Enter an option > ");
+			
 			if (option == ADD) {
 				//Add Payment
-				
+				addPayment(paymentList);
 			} else if (option == VIEW_ALL) {
 				//View All Payment
-				
+				viewAllPayment(paymentList);
 			} else if (option == DELETE) {
 				// Delete Payment
-				
+				deletePayment(paymentList);
 			}
 		}
 	}
 	
 
 	private static void addPayment(ArrayList<Payment> paymentList) {
-//		C206_CaseStudy.viewAllPayment(paymentList);
-		String tag = Helper.readString("Enter asset tag > ");
-		double newBid = Helper.readDouble("Enter new bid > $");
+//		String tag = Helper.readString("Enter asset tag > ");
+//		double newBid = Helper.readDouble("Enter new bid > $");
 
 //		for (int i = 0; i < paymentList.size(); i++) {
 //			payment = paymentList.get(i);
@@ -225,6 +236,15 @@ public class C206_CaseStudy {
 	
 	private static void viewAllPayment(ArrayList<Payment> paymentList) {
 		
+		String output = String.format("%-12s %-15s %-25s %-10s %-10s\n", "AuctionID", "ItemAssetTag", "Description", "Price", "Paid");
+		
+		for (Payment payment : paymentList) {
+			output += String.format("%-12d %-15s %-25s %-10.2f %-10s\n", 
+					payment.getAuction().getAuctionID(), payment.getItem().getAssetTag(), payment.getItem().getDescription(),
+					payment.getAuction().getCurrentBid(), payment.isPaid());
+		}
+		Helper.line(80, "=");
+		System.out.println(output);
 	}
 	
 	private static void deletePayment(ArrayList<Payment> paymentList) {
