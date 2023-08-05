@@ -28,7 +28,13 @@ public class OnlineAuctionShop {
 
 	private static void launch() {
 		
+		Auction a1 = new Auction(1, "A beautiful description", 100.50);
+		Item i1 = new Item("I1", "Item is an Item");
+		Payment p1 = new Payment(1, a1, i1, false);
 		
+		auctionList.add(a1);
+		itemList.add(i1);
+		paymentList.add(p1);
 		
 		int option = -99;
 
@@ -203,6 +209,8 @@ public class OnlineAuctionShop {
 			} else if (option == DELETE) {
 				// Delete Payment
 				deletePayment(paymentList);
+			} else {
+				System.out.println("Invalid option");
 			}
 		}
 	}
@@ -216,23 +224,26 @@ public class OnlineAuctionShop {
 			
 			boolean auctionExist = false;
 			boolean itemExist = false;
-			boolean paymentExist = false;
+			int paymentExist = -1;
+			Auction auction = null;
+			Item item = null;
 			
 			int auctionID = Helper.readInt("Enter Auction ID > ");
 			String assetTag = Helper.readString("Enter Asset Tag > ");
 			
-			
-			for (Auction auction : auctionList) {
-				if (auction.getAuctionID() == auctionID) {
+			for (Auction a : auctionList) {
+				if (a.getAuctionID() == auctionID) {
 					auctionExist = true;
+					auction = a;
 					break;
 				}
 			}
 			
 			if (auctionExist == true) {
-				for (Item item : itemList) {
-					if (item.getAssetTag() == assetTag) {
+				for (Item i : itemList) {
+					if (i.getAssetTag().equals(assetTag)) {
 						itemExist = true;
+						item = i;
 						break;
 					}
 				}
@@ -242,25 +253,33 @@ public class OnlineAuctionShop {
 			
 			if (itemExist == true) {
 				for (Payment payment : paymentList) {
-					if (payment == assetTag) {
-						itemExist = true;
+					if (payment.getAuction().getAuctionID() == auctionID && payment.getItem().getAssetTag().equalsIgnoreCase(assetTag)) {
+						paymentExist = 1;
 						break;
+					} else {
+						paymentExist = 0;
 					}
 				}
+			} else {
+				System.out.println("Invalid Item Assest Tag");
 			}
 			
-			
+			if (paymentExist == 0) {
+				paymentList.add(new Payment(paymentList.size() + 1, auction, item, false));
+			} else if (paymentExist == 1) {
+				System.out.println("Payment already exists");
+			}
 			
 		} else if (paymentType.equalsIgnoreCase("make")) {
 			
 			viewAllPayment(paymentList);
-			int auctionID = Helper.readInt("Enter Auction ID > ");
-			boolean auctionExist = false;
+			int paymentID = Helper.readInt("Enter Payment ID > ");
+			boolean paymentExist = false;
 			
 			for (Payment payment : paymentList) {
-				if (payment.getAuction().getAuctionID() == auctionID) {
+				if (payment.getPaymentID() == paymentID) {
 					
-					auctionExist = true;
+					paymentExist = true;
 					double amount = Helper.readDouble("Enter amount to pay > ");
 					
 					if (amount >= payment.getAuction().getCurrentBid()) {
@@ -272,11 +291,12 @@ public class OnlineAuctionShop {
 					} else {
 						System.out.println("Insufficient amount to pay");
 					}
+					break;
 				}
 			}
 			
-			if (auctionExist = false) {
-				System.out.println("Invalid Auction ID");
+			if (paymentExist == false) {
+				System.out.println("Invalid Payment ID");
 			}
 			
 		} else {

@@ -37,6 +37,7 @@ public class Payment {
 	
 	public void makePayment() {
 		if (paid == false) {
+			this.paid = true;
 			System.out.println("Payment made successfully");
 		} else {
 			System.out.println("Payment has already been made");
