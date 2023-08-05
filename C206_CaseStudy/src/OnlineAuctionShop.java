@@ -81,15 +81,14 @@ public class OnlineAuctionShop {
 		option = Helper.readInt("Enter an option >");
 		while (option != EXIT) {
 			if (option == ADD) {
-				//Add a new user
-				
-				
+				//Add User
+				addUser(userList);
 			} else if (option == VIEW_ALL) {
 				//View All Users
-				
+				viewAllUsers(userList);
 			} else if (option == DELETE) {
-				//Delete an existing user
-				
+				// Delete an existing user
+				deleteUser(userList);
 			}
 		}
 	}
@@ -103,26 +102,23 @@ public class OnlineAuctionShop {
 		System.out.println("4. Exit");
 	}
 	
-	public static void addUser(ArrayList<User> UserList , User u) {
-		User user;
-		for(int i = 0; i < UserList.size(); i++) {
-			user = UserList.get(i);
-			if (user.getName().equalsIgnoreCase(user.getName()) )
-				return;
-		}
-		if ((u.getName().isEmpty()) || (u.getPw().isEmpty()) ) {
-			return;
-		}
-		
-		UserList.add(u);
-	}
-	
-	public static void ViewAllUsers(ArrayList<User> UserList , User u) {
-		
+	public static void addUser(ArrayList<User> UserList ) {
 		
 	}
 	
-	public static void deleteUser(ArrayList<User> UserList , User u) {
+	
+	public static void viewAllUsers(ArrayList<User> UserList ) {
+			String output = String.format("%-12s %-15s %-25s %-10s\n", "Name", "Id", "Password", "Email");
+			
+			for (User user : userList) {
+				output += String.format("%-12d %-15d %-25s %-10s\n", 
+						user.getName(), user.getId() , user.getPw() , user.getEmail());
+			 }
+			Helper.line(80, "=");
+			System.out.println(output);
+		}
+	
+	public static void deleteUser(ArrayList<User> UserList ) {
 		
 	}
 	
@@ -143,7 +139,7 @@ public class OnlineAuctionShop {
 		bidMenu();
 		while (option != EXIT) {
 			if (option == ADD) {
-				//Add Bid
+				
 				
 			} else if (option == VIEW_ALL) {
 				//View All Bids
