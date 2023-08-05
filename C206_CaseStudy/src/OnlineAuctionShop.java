@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class C206_CaseStudy {
+public class OnlineAuctionShop {
 
 	private static final int OPTION_QUIT = 6;
 	private static final int OPTION_USER = 1;
@@ -28,13 +28,7 @@ public class C206_CaseStudy {
 
 	private static void launch() {
 		
-		Auction a1 = new Auction(1, "A beautiful description", 100.50);
-		Item i1 = new Item("I1", "Item is an Item");
-		Payment p1 = new Payment(a1, i1, true);
-		
-		auctionList.add(a1);
-		itemList.add(i1);
-		paymentList.add(p1);
+
 		
 		int option = -99;
 
@@ -64,7 +58,7 @@ public class C206_CaseStudy {
 
 	// Display the main menu options
 	private static void mainMenu() {
-		C206_CaseStudy.setHeader("CAMPUS ONLINE AUCTION SHOP (COAS)");
+		OnlineAuctionShop.setHeader("CAMPUS ONLINE AUCTION SHOP (COAS)");
 		System.out.println("1. Maintain Users");
 		System.out.println("2. Maintain Auctions");
 		System.out.println("3. Maintain Items");
@@ -102,7 +96,7 @@ public class C206_CaseStudy {
 
 
 	private static void userMenu() {
-		C206_CaseStudy.setHeader("USER MENU");
+		OnlineAuctionShop.setHeader("USER MENU");
 		System.out.println("1. Add a new user");
 		System.out.println("2. View All Users");
 		System.out.println("3. Delete an existing user");
@@ -137,7 +131,7 @@ public class C206_CaseStudy {
 	// ================================= Option 4: Bids (Jia Jun) =================================
 
 	private static void bidMenu() {
-		C206_CaseStudy.setHeader("BID MENU");
+		OnlineAuctionShop.setHeader("BID MENU");
 		System.out.println("1. Add a New Bid");
 		System.out.println("2. View All Bids");
 		System.out.println("3. Delete an Existing Bid");
@@ -161,7 +155,7 @@ public class C206_CaseStudy {
 	
 
 	private static void addBid(ArrayList<Item> itemList) {
-//		C206_CaseStudy.viewAllItems(itemList);
+//		OnlineAuctionShop.viewAllItems(itemList);
 		String tag = Helper.readString("Enter asset tag > ");
 		double newBid = Helper.readDouble("Enter new bid > $");
 
@@ -189,7 +183,7 @@ public class C206_CaseStudy {
 	// ================================= Option 5: Payment (Ivan) =================================
 
 	private static void paymentMenu() {
-		C206_CaseStudy.setHeader("PAYMENT MENU");
+		OnlineAuctionShop.setHeader("PAYMENT MENU");
 		System.out.println("1. Add a New Payment");
 		System.out.println("2. View All Payment");
 		System.out.println("3. Delete an Existing Payment");
