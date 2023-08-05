@@ -29,5 +29,12 @@ public class Payment {
 		return item;
 	}
 	
+	public void makePayment() {
+		if (paid == false) {
+			System.out.println("Payment made successfully");
+		} else {
+			System.out.println("Payment has already been made");
+		}
+	}
 	
 }
