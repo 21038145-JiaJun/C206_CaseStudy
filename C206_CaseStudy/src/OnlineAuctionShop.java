@@ -184,7 +184,7 @@ public class OnlineAuctionShop {
 
 	private static void paymentMenu() {
 		OnlineAuctionShop.setHeader("PAYMENT MENU");
-		System.out.println("1. Add a New Payment");
+		System.out.println("1. Add/Make Payment");
 		System.out.println("2. View All Payment");
 		System.out.println("3. Delete an Existing Payment");
 		System.out.println("4. Exit");
@@ -200,7 +200,7 @@ public class OnlineAuctionShop {
 			
 			if (option == ADD) {
 				//Add Payment
-				addPayment(paymentList);
+				addPayment(paymentList, auctionList, itemList);
 			} else if (option == VIEW_ALL) {
 				//View All Payment
 				viewAllPayment(paymentList);
@@ -212,20 +212,27 @@ public class OnlineAuctionShop {
 	}
 	
 
-	private static void addPayment(ArrayList<Payment> paymentList) {
-//		String tag = Helper.readString("Enter asset tag > ");
-//		double newBid = Helper.readDouble("Enter new bid > $");
-
-//		for (int i = 0; i < paymentList.size(); i++) {
-//			payment = paymentList.get(i);
-//			if (payment.getAssetTag().equalsIgnoreCase(payment.getAssetTag()))
-//				return;
-//		}
-//		if ((item.getAssetTag().isEmpty()) || (item.getDescription().isEmpty())) {
-//			return;
-//		}
-//
-//		itemList.add(item);
+	private static void addPayment(ArrayList<Payment> paymentList, ArrayList<Auction> auctionList, ArrayList<Item> itemList) {
+		
+		String paymentType = Helper.readString("Would you like to add or make payment? (Add/Make) > ");
+		
+		if (paymentType.equalsIgnoreCase("add")) {
+			
+			int auctionID = Helper.readInt("Enter Auction ID > ");
+			String tag = Helper.readString("Enter Asset Tag > ");
+			
+			
+			for (Auction auction : auctionList) {
+				if ()
+			}
+			
+		} else if (paymentType.equalsIgnoreCase("make")) {
+			
+		} else {
+			System.out.println("Invalid option");
+		}
+		
+		
 	}
 	
 	private static void viewAllPayment(ArrayList<Payment> paymentList) {
