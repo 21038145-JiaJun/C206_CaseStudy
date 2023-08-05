@@ -36,5 +36,4 @@ public class Payment {
 			System.out.println("Payment has already been made");
 		}
 	}
-	
 }
