@@ -49,7 +49,7 @@ public class OnlineAuctionShopTest {
 		paymentList.add(p1);
 	
 	}
-
+	// ================================= Test Option 1: User (Cedric) =================================
 	@Test
 	public void OnlineAuctionShop_testAddUser() {
 		//Add a new user
@@ -90,7 +90,7 @@ public class OnlineAuctionShopTest {
 		u4 = null;
 		u5 = null;
 		u6 = null;
-		UserList = null;
+		userList = null;
 		
 	}
 }
