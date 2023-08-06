@@ -103,6 +103,18 @@ public class OnlineAuctionShop {
 	}
 	
 	public static void addUser(ArrayList<User> UserList ) {
+		User user;
+		for(int i = 0; i < userList.size(); i++) {
+			user = userList.get(i);
+			if (user.getName().equalsIgnoreCase(user.getName())) {
+				return;
+		}
+		if ((user.getPw().isEmpty()) || (user.getEmail().isEmpty()) ) {
+			return;
+		}
+		
+		userList.add(user);
+	}
 		
 	}
 	
@@ -119,11 +131,24 @@ public class OnlineAuctionShop {
 		}
 	
 	public static void deleteUser(ArrayList<User> UserList ) {
-		
-	}
-	
-	
+		    String name = Helper.readString("Enter the name of the user to delete: ");
+		    boolean found = false;
 
+		    for (int i = 0; i < userList.size(); i++) {
+		        User user = userList.get(i);
+		        if (user.getName().equalsIgnoreCase(name)) {
+		            userList.remove(i);
+		            System.out.println("User " + name + " has been deleted.");
+		            found = true;
+		            break;
+		        }
+		    }
+
+		    if (!found) {
+		        System.out.println("User " + name + " not found.");
+		    }
+		}
+	
 	// ================================= Option 4: Bids (Jia Jun) =================================
 
 	private static void bidMenu() {
