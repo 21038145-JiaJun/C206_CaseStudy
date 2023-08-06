@@ -42,7 +42,7 @@ public class OnlineAuctionShopTest {
 		
 		Auction a1 = new Auction(1, "A beautiful description", 100.50);
 		Item i1 = new Item("I1", "Item is an Item");
-		Payment p1 = new Payment(a1, i1, true);
+		Payment p1 = new Payment(1, a1, i1, true);
 		
 		auctionList.add(a1);
 		itemList.add(i1);

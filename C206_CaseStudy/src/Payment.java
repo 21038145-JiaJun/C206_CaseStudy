@@ -1,12 +1,14 @@
 
 public class Payment {
 	
+	private int paymentID;
 	private Auction auction;
 	private Item item;
 	private boolean paid;
 	
 	
-	public Payment(Auction auction, Item item, boolean paid) {
+	public Payment(int paymentID, Auction auction, Item item, boolean paid) {
+		this.paymentID = paymentID;
 		this.auction = auction;
 		this.item = item;
 		this.paid = paid;
@@ -20,6 +22,10 @@ public class Payment {
 		}
 	}
 
+	public int getPaymentID() {
+		return paymentID;
+	}
+
 	public Auction getAuction() {
 		return auction;
 	}
@@ -29,5 +35,12 @@ public class Payment {
 		return item;
 	}
 	
-	
+	public void makePayment() {
+		if (paid == false) {
+			this.paid = true;
+			System.out.println("Payment made successfully");
+		} else {
+			System.out.println("Payment has already been made");
+		}
+	}
 }
