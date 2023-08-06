@@ -2,7 +2,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class OnlineAuctionShop {
-
+	
+	private static final int OPTION_DEFAULT = -99;
 	private static final int OPTION_QUIT = 6;
 	private static final int OPTION_USER = 1;
 	private static final int OPTION_AUCTION = 2;
@@ -41,7 +42,7 @@ public class OnlineAuctionShop {
 		itemList.addAll(Arrays.asList(i1, i2));
 		paymentList.add(p1);
 		
-		int option = -99;
+		int option = OPTION_DEFAULT;
 
 		while (option != 6) {
 			mainMenu();
@@ -87,7 +88,7 @@ public class OnlineAuctionShop {
 
 	// ================================= Option 1: Users (Cedric) =================================
 	private static void user() {
-		int option = -99;
+		int option = OPTION_DEFAULT;
 		userMenu();
 		option = Helper.readInt("Enter an option >");
 		while (option != EXIT) {
@@ -146,7 +147,7 @@ public class OnlineAuctionShop {
 	}
 
 	private static void bid() {
-		int option = -99;
+		int option = OPTION_DEFAULT;
 		bidMenu();
 		while (option != EXIT) {
 			if (option == ADD) {
@@ -198,7 +199,7 @@ public class OnlineAuctionShop {
 	}
 
 	private static void payment() {
-		int option = -99;
+		int option = OPTION_DEFAULT;
 		
 		while (option != EXIT) {
 			
