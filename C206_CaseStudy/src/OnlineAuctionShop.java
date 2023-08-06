@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class OnlineAuctionShop {
 
@@ -13,6 +14,8 @@ public class OnlineAuctionShop {
 	private static final int VIEW_ALL = 2;
 	private static final int DELETE = 3;
 	private static final int EXIT = 4;
+	
+	private static final String ERROR_MSG_OPTION = "Invalid option";
 	
 	private static ArrayList<Payment> paymentList = new ArrayList<Payment>();
 	private static ArrayList<Object> objectList = new ArrayList<Object>();
@@ -29,11 +32,13 @@ public class OnlineAuctionShop {
 	private static void launch() {
 		
 		Auction a1 = new Auction(1, "A beautiful description", 100.50);
-		Item i1 = new Item("I1", "Item is an Item");
+		Auction a2 = new Auction(2, "A disgusting description", 201);
+		Item i1 = new Item("I1", "Pencil");
+		Item i2 = new Item("J2", "Backpack");
 		Payment p1 = new Payment(1, a1, i1, false);
 		
-		auctionList.add(a1);
-		itemList.add(i1);
+		auctionList.addAll(Arrays.asList(a1, a2));
+		itemList.addAll(Arrays.asList(i1, i2));
 		paymentList.add(p1);
 		
 		int option = -99;
@@ -56,7 +61,7 @@ public class OnlineAuctionShop {
 			} else if (option == OPTION_QUIT) {
 				
 			} else {
-				System.out.println("Invalid option");
+				System.out.println(ERROR_MSG_OPTION);
 			}
 
 		}
@@ -210,7 +215,7 @@ public class OnlineAuctionShop {
 				// Delete Payment
 				deletePayment(paymentList);
 			} else {
-				System.out.println("Invalid option");
+				System.out.println(ERROR_MSG_OPTION);
 			}
 		}
 	}
@@ -266,6 +271,7 @@ public class OnlineAuctionShop {
 			
 			if (paymentExist == 0) {
 				paymentList.add(new Payment(paymentList.size() + 1, auction, item, false));
+				System.out.println("Payment added successfully");
 			} else if (paymentExist == 1) {
 				System.out.println("Payment already exists");
 			}
@@ -300,7 +306,7 @@ public class OnlineAuctionShop {
 			}
 			
 		} else {
-			System.out.println("Invalid option");
+			System.out.println(ERROR_MSG_OPTION);
 		}
 		
 		
@@ -315,6 +321,8 @@ public class OnlineAuctionShop {
 					payment.getPaymentID(), payment.getAuction().getAuctionID(), payment.getItem().getAssetTag(),
 					payment.getItem().getDescription(), payment.getAuction().getCurrentBid(), payment.isPaid());
 		}
+		Helper.line(80, "=");
+		System.out.println("LIST OF PAYMENTS");
 		Helper.line(80, "=");
 		System.out.println(output);
 	}
@@ -343,7 +351,7 @@ public class OnlineAuctionShop {
 			} else if (confirmation == 'n' || confirmation == 'N') {
 				System.out.println("Deleting cancelled");
 			} else {
-				System.out.println("Invalid option");
+				System.out.println(ERROR_MSG_OPTION);
 			}
 		} else {
 			System.out.println("Invalid Payment ID");
