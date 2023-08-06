@@ -115,13 +115,32 @@ public class OnlineAuctionShopTest {
 	
 	@Test
 	public void OnlineAuctionShop_testViewAllPayment() {
-
+		//Test if Payment list is not null but empty - boundary
+		assertNotNull("Test if there is valid Payment arraylist to retrieve item", paymentList);
+		
+		//Test if the list of Payment retrieved from the OnlineAuctionShop is empty - boundary
+		String allPayment = OnlineAuctionShop.retrieveAllPayment(paymentList);
+		String testOutput = "";
+		assertEquals("Test that ViewAllPayment is empty", testOutput, allPayment);
+		
+		//Given an empty list, after adding 2 payments, test if the size of the list is 2 - normal
+		OnlineAuctionShop.addPayment(paymentList, p1);
+		OnlineAuctionShop.addPayment(paymentList, p2);
+		assertEquals("Test that Payment arraylist size is 2", 2, paymentList.size());
+		
+		//Test if the expected output string is the same as the list of payments retrieved from the OnlineAuctionShop	
+		allPayment = OnlineAuctionShop.retrieveAllPayment(paymentList);
+		testOutput = String.format("%-12d %-12d %-15s %-25s %-10.2f %-10s\n", 1, 1, "I1", "Pencil", 100.50, "No");
+		testOutput += String.format("%-12d %-12d %-15s %-25s %-10.2f %-10s\n", 2, 2, "I2", "Backpack", 20.00, "No");
+	
+		assertEquals("Test that ViewAllPayment matches", testOutput, allPayment);
+		
 	}
 	
 	
 	@Test
 	public void OnlineAuctionShop_testDeletePayment() {
-
+		
 	}
 	
 	

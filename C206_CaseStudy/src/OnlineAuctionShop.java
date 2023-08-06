@@ -234,6 +234,7 @@ public class OnlineAuctionShop {
 		}
 	}
 	
+	// ================================= Option 1: Add/Make Payment (Ivan) =================================
 	public static void makePayment(ArrayList<Payment> paymentList) {
 		viewAllPayment(paymentList);
 		int paymentID = Helper.readInt("Enter Payment ID > ");
@@ -323,21 +324,28 @@ public class OnlineAuctionShop {
 		}
 	}
 	
-	public static void viewAllPayment(ArrayList<Payment> paymentList) {
-		
-		String output = String.format("%-12s %-12s %-15s %-25s %-10s %-10s\n", "PaymentID", "AuctionID", "ItemAssetTag", "Description", "Price", "Paid");
+	// ================================= Option 2: View All Payments (Ivan) =================================
+	public static String retrieveAllPayment(ArrayList<Payment> paymentList) {
+		String output = "";
 		
 		for (Payment payment : paymentList) {
 			output += String.format("%-12d %-12d %-15s %-25s %-10.2f %-10s\n", 
 					payment.getPaymentID(), payment.getAuction().getAuctionID(), payment.getItem().getAssetTag(),
 					payment.getItem().getDescription(), payment.getAuction().getCurrentBid(), payment.isPaid());
 		}
-		Helper.line(120, "=");
-		System.out.println("LIST OF PAYMENTS");
-		Helper.line(120, "=");
-		System.out.println(output);
+		return output;
 	}
 	
+	public static void viewAllPayment(ArrayList<Payment> paymentList) {
+		
+		String output = String.format("%-12s %-12s %-15s %-25s %-10s %-10s\n", "PaymentID", "AuctionID", "ItemAssetTag", "Description", "Price", "Paid");
+		String output1 = retrieveAllPayment(paymentList);
+		
+		setHeader("LIST OF PAYMENTS");
+		System.out.println(output += output1);
+	}
+	
+	// ================================= Option 3: Delete Payments (Ivan) =================================
 	public static void deletePayment(ArrayList<Payment> paymentList) {
 		
 		viewAllPayment(paymentList);
