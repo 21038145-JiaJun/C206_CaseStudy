@@ -321,6 +321,33 @@ public class OnlineAuctionShop {
 	
 	private static void deletePayment(ArrayList<Payment> paymentList) {
 		
+		viewAllPayment(paymentList);
+		boolean paymentExist = false;
+		
+		int paymentID = Helper.readInt("Enter Payment ID to be deleted > ");
+		
+		for (Payment p : paymentList) {
+			if (paymentID == p.getPaymentID()) {
+				paymentExist = true;
+				break;
+			}
+		}
+		
+		if (paymentExist == true) {
+			char confirmation = Helper.readChar("Confirm deletion of payment? (Y/N) > ");
+			
+			if (confirmation == 'y' || confirmation == 'Y') {
+				paymentList.remove(paymentID - 1);
+				System.out.println("Payment successfully deleted");
+				
+			} else if (confirmation == 'n' || confirmation == 'N') {
+				System.out.println("Deleting cancelled");
+			} else {
+				System.out.println("Invalid option");
+			}
+		} else {
+			System.out.println("Invalid Payment ID");
+		}
 	}
 	
 	
