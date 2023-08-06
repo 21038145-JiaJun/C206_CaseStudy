@@ -80,9 +80,9 @@ public class OnlineAuctionShop {
 
 	// This is to set header for the menus
 	public static void setHeader(String header) {
-		Helper.line(80, "-");
+		Helper.line(120, "-");
 		System.out.println(header);
-		Helper.line(80, "-");
+		Helper.line(120, "-");
 	}
 
 	// ================================= Option 1: Users (Cedric) =================================
@@ -321,9 +321,9 @@ public class OnlineAuctionShop {
 					payment.getPaymentID(), payment.getAuction().getAuctionID(), payment.getItem().getAssetTag(),
 					payment.getItem().getDescription(), payment.getAuction().getCurrentBid(), payment.isPaid());
 		}
-		Helper.line(80, "=");
+		Helper.line(120, "=");
 		System.out.println("LIST OF PAYMENTS");
-		Helper.line(80, "=");
+		Helper.line(120, "=");
 		System.out.println(output);
 	}
 	
