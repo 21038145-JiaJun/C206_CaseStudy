@@ -9,12 +9,12 @@ import org.junit.Test;
 
 public class OnlineAuctionShopTest {
 	//prepare test data
-	private static ArrayList<Payment> paymentList = new ArrayList<Payment>();
-	private static ArrayList<Object> objectList = new ArrayList<Object>();
-	private static ArrayList<Item> itemList = new ArrayList<Item>();
-	private static ArrayList<User> userList = new ArrayList<User>();
-	private static ArrayList<Auction> auctionList = new ArrayList<Auction>();
-	private static ArrayList<Bid> bidList = new ArrayList<Bid>();
+	private ArrayList<Payment> paymentList;
+	private ArrayList<Object> objectList;
+	private ArrayList<Item> itemList;
+	private ArrayList<User> userList;
+	private ArrayList<Auction> auctionList;
+	private ArrayList<Bid> bidList;
 	
 	private User u1;
 	private User u2;
@@ -22,6 +22,19 @@ public class OnlineAuctionShopTest {
 	private User u4;
 	private User u5;
 	private User u6;
+	
+	private Auction a1;
+	private Auction a2;
+	private Auction a3;
+	
+	private Item i1;
+	private Item i2;
+	private Item i3;
+	
+	private Payment p1;
+	private Payment p2;
+	private Payment p3;
+	private Payment p4;
 	
 	public OnlineAuctionShopTest() {
 		super();
@@ -38,24 +51,34 @@ public class OnlineAuctionShopTest {
 		u5 = new User("Rena" , 24748493, "Ren35A" , "rena89@yahoo.com");
 		u6 = new User("Jason" , 98365748 , "JaS3n" , "jasON23@yahoo.com");
 		
-		userList.addAll(Arrays.asList(u1, u2, u3, u4, u5, u6));
+		a1 = new Auction(1, "Description 1", 100.50);
+		a2 = new Auction(2, "Description 2", 20);
+		a3 = new Auction(3, "Description 3", 300.99);
 		
-		Auction a1 = new Auction(1, "A beautiful description", 100.50);
-		Item i1 = new Item("I1", "Item is an Item");
-		Payment p1 = new Payment(1, a1, i1, true);
+		i1 = new Item("I1", "Pencil");
+		i2 = new Item("I2", "Backpack");
+		i3 = new Item("I3", "Calculator");
 		
-		auctionList.add(a1);
-		itemList.add(i1);
-		paymentList.add(p1);
-	
+		p1 = new Payment(1, a1, i1, false);
+		p2 = new Payment(2, a2, i2, false);
+		p3 = null;
+		p4 = new Payment(1, a1, i1, false);
+		
+		paymentList = new ArrayList<Payment>();
+		objectList = new ArrayList<Object>();
+		auctionList = new ArrayList<Auction>();
+		itemList = new ArrayList<Item>();
+		userList = new ArrayList<User>();
+		bidList = new ArrayList<Bid>();
+		
 	}
 	// ================================= Test Option 1: User (Cedric) =================================
 	@Test
 	public void OnlineAuctionShop_testAddUser() {
 		//Add a new user
 		  
-
-
+		
+		
 		assertTrue("OnlineAuctionShop_SampleTest",true);
 	}
 	
@@ -64,20 +87,42 @@ public class OnlineAuctionShopTest {
 	
 	
 	// ================================= Test Option 5: Payment (Ivan) =================================
+	
 	@Test
 	public void OnlineAuctionShop_testAddPayment() {
-		 //Add a new user 
-		  
 		
+		//Payment list is not null, so that can add a new payment - boundary
+		assertNotNull("Check if there is valid Payment arraylist to add to", paymentList);
+		//The payment just added is the as same as the first payment of the list - normal
+		OnlineAuctionShop.addPayment(paymentList, p1);
+		assertEquals("Check that Payment arraylist size is 1", 1, paymentList.size());
+		assertSame("Check that Payment is added", p1, paymentList.get(0));
 		
-		assertTrue("OnlineAuctionShop_SampleTest",true);
+		//Add another payment. Test that the size of the list is 2 -normal
+		//The payment just added is as same as the second payment of the list
+		OnlineAuctionShop.addPayment(paymentList, p2);
+		assertEquals("Check that Payment arraylist size is 2", 2, paymentList.size());
+		assertSame("Check that Payment is added", p2, paymentList.get(1));
+		
+		//Test that adding payment with no fields to the list fails - error
+		assertNull("Check that payment in list, and the payment to add is the same", p3);
+		OnlineAuctionShop.addPayment(paymentList, p3);
+		//The Payment list size does not change, and the payment is not added
+		assertEquals("Check that Payment arraylist size is 2", 2, paymentList.size());
+		
 	}
 	
 	
+	@Test
+	public void OnlineAuctionShop_testViewAllPayment() {
+
+	}
 	
 	
-	
-	
+	@Test
+	public void OnlineAuctionShop_testDeletePayment() {
+
+	}
 	
 	
 	
@@ -90,7 +135,22 @@ public class OnlineAuctionShopTest {
 		u4 = null;
 		u5 = null;
 		u6 = null;
-		userList = null;
 		
+		a1 = null;
+		a2 = null;
+		a3 = null;
+		
+		i1 = null;
+		i2 = null;
+		i3 = null;
+		
+		p1 = null;
+		p2 = null;
+		p3 = null;
+		
+		auctionList = null;
+		itemList = null;
+		paymentList = null;
+		userList = null;
 	}
 }
