@@ -190,7 +190,7 @@ public class OnlineAuctionShop {
 	
 	// ================================= Option 5: Payment (Ivan) =================================
 
-	private static void paymentMenu() {
+	public static void paymentMenu() {
 		OnlineAuctionShop.setHeader("PAYMENT MENU");
 		System.out.println("1. Add/Make Payment");
 		System.out.println("2. View All Payment");
@@ -198,7 +198,7 @@ public class OnlineAuctionShop {
 		System.out.println("4. Exit");
 	}
 
-	private static void payment() {
+	public static void payment() {
 		int option = OPTION_DEFAULT;
 		
 		while (option != EXIT) {
@@ -208,7 +208,8 @@ public class OnlineAuctionShop {
 			
 			if (option == ADD) {
 				//Add Payment
-				addPayment(paymentList, auctionList, itemList);
+				Payment payment = null;
+				addPayment(paymentList, auctionList, itemList, payment);
 			} else if (option == VIEW_ALL) {
 				//View All Payment
 				viewAllPayment(paymentList);
@@ -222,7 +223,7 @@ public class OnlineAuctionShop {
 	}
 	
 
-	private static void addPayment(ArrayList<Payment> paymentList, ArrayList<Auction> auctionList, ArrayList<Item> itemList) {
+	public static void addPayment(ArrayList<Payment> paymentList, ArrayList<Auction> auctionList, ArrayList<Item> itemList, Payment payment) {
 		
 		String paymentType = Helper.readString("Would you like to add or make payment? (Add/Make) > ");
 		
@@ -231,6 +232,7 @@ public class OnlineAuctionShop {
 			boolean auctionExist = false;
 			boolean itemExist = false;
 			int paymentExist = -1;
+			
 			Auction auction = null;
 			Item item = null;
 			
@@ -313,7 +315,7 @@ public class OnlineAuctionShop {
 		
 	}
 	
-	private static void viewAllPayment(ArrayList<Payment> paymentList) {
+	public static void viewAllPayment(ArrayList<Payment> paymentList) {
 		
 		String output = String.format("%-12s %-12s %-15s %-25s %-10s %-10s\n", "PaymentID", "AuctionID", "ItemAssetTag", "Description", "Price", "Paid");
 		
@@ -328,7 +330,7 @@ public class OnlineAuctionShop {
 		System.out.println(output);
 	}
 	
-	private static void deletePayment(ArrayList<Payment> paymentList) {
+	public static void deletePayment(ArrayList<Payment> paymentList) {
 		
 		viewAllPayment(paymentList);
 		boolean paymentExist = false;
