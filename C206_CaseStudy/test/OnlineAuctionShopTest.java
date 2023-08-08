@@ -27,6 +27,10 @@ public class OnlineAuctionShopTest {
 	private Auction a1;
 	private Auction a2;
 	private Auction a3;
+	
+	private Bid b1;
+	private Bid b2;
+	private Bid b3;
 
 	private Item i1;
 	private Item i2;
@@ -201,6 +205,19 @@ public class OnlineAuctionShopTest {
 
 	}
 
+	
+	@Test
+	public void OnlineAuctionShop_testAddBid() {
+		
+		
+		
+		// Test if the new bid is empty
+		assertNotNull("Test if the auction arraylist to retrieve item", auctionList);
+		assertEquals("Test if the auction arraylist is empty",0,auctionList.size());
+		
+		// Test if the new bid is changed
+		
+	}
 
 
 
