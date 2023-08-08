@@ -194,7 +194,7 @@ public class OnlineAuctionShop {
 			System.out.println("Auction ID: " + auction.getAuctionID());
 			System.out.println("Description: " + auction.getDescription());
 			System.out.println("Current Highest Bid: $" + auction.getCurrentBid());
-			Helper.line(30, "-");
+			Helper.line(30, "=");
 		}
 
 	}
