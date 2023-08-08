@@ -381,7 +381,7 @@ public class OnlineAuctionShop {
 
 	// ================================= Option 1: [Auction] ([Wang tianqi]) =================================
 
-	private static void auctionMenu() {
+	public static void auctionMenu() {
 		OnlineAuctionShop.setHeader("AUCTION MENU");
 		System.out.println("1. Add a New Auction");
 		System.out.println("2. View All Auction");
@@ -398,11 +398,11 @@ public class OnlineAuctionShop {
 			auctionOption = Helper.readInt("Enter an option > ");
 
 			if (auctionOption == ADD) {
-				addAuction(auctionList);
+				addAuction(auctionList, null);
 			} else if (auctionOption == VIEW_ALL) {
 				viewAllAuctions(auctionList);
 			} else if (auctionOption == DELETE) {
-				deleteAuction(auctionList);
+				deleteAuction(auctionList, auctionOption);
 			} else if (auctionOption == EXIT) {
 
 			} else {
@@ -412,48 +412,51 @@ public class OnlineAuctionShop {
 	}
 
 
-	private static void deleteAuction(ArrayList<Auction> auctionList) {
+	public static void deleteAuction(ArrayList<Auction> auctionList, int i) {
 		int auctionID = Helper.readInt("Enter Auction ID > ");
 
-		
-		    Iterator<Auction> iterator = auctionList.iterator();
-		    while (iterator.hasNext()) {
-		        Auction auction = iterator.next();
-		        if (auction.getAuctionID() == auctionID) {
-		            iterator.remove();
-		            System.out.println("Auction with ID " + auctionID + " has been deleted.");
-		            return;
-		        }
-		    }
-		    System.out.println("Auction with ID " + auctionID + " not found.");
+
+		Iterator<Auction> iterator = auctionList.iterator();
+		while (iterator.hasNext()) {
+			Auction auction = iterator.next();
+			if (auction.getAuctionID() == auctionID) {
+				iterator.remove();
+				System.out.println("Auction with ID " + auctionID + " has been deleted.");
+				return;
+			}
+		}
+		System.out.println("Auction with ID " + auctionID + " not found.");
 	}
-	   
 
 
-private static void viewAllAuctions(ArrayList<Auction> auctionList) {
-	// TODO Auto-generated method stub
+	public static void viewAllAuctions(ArrayList<Auction> auctionList) {
+		// TODO Auto-generated method stub
 
-	System.out.println("All Auctions:");
-	for (Auction auction : auctionList) {
-		System.out.println("Auction ID: " + auction.getAuctionID());
-		System.out.println("Description: " + auction.getDescription());
-		System.out.println("Starting Bid: $" + auction.getStartingBid());
-		System.out.println();
+		System.out.println("All Auctions:");
+		for (Auction auction : auctionList) {
+			System.out.println("Auction ID: " + auction.getAuctionID());
+			System.out.println("Description: " + auction.getDescription());
+			System.out.println("Starting Bid: $" + auction.getStartingBid());
+			System.out.println();
+		}
 	}
-}
 
 
 
-public static void addAuction(ArrayList<Auction> auctionList) {
-	int auctionID = Helper.readInt("Enter Auction ID > ");
-	String description = Helper.readString("Enter Description > ");
-	double startingBid = Helper.readDouble("Enter Starting Bid > ");
+	public static void addAuction(ArrayList<Auction> auctionList, Auction auction) {
+		int auctionID = Helper.readInt("Enter Auction ID > ");
+		String description = Helper.readString("Enter Description > ");
+		double startingBid = Helper.readDouble("Enter Starting Bid > ");
 
-	Auction auction = new Auction(auctionID, description, startingBid);
-	auctionList.add(auction);
+		Auction auction1 = new Auction(auctionID, description, startingBid);
+		auctionList.add(auction1);
 
-	System.out.println("Auction added successfully");
-}
+		System.out.println("Auction added successfully");
+	}
+
+
+	
+
 
 
 }
