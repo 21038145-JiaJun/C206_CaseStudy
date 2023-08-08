@@ -427,7 +427,7 @@ public class OnlineAuctionShop {
 		    }
 		    System.out.println("Auction with ID " + auctionID + " not found.");
 	}
-	
+	   
 
 
 private static void viewAllAuctions(ArrayList<Auction> auctionList) {
