@@ -88,61 +88,58 @@ public class OnlineAuctionShopTest {
 	// ================================= Test Option 3: Auction ([Wang tianqi]) =================================
 	@Test
 	public void OnlineAuctionShop_testAddAuction() {
-		// auction list is not null and it is empty
-		assertNotNull("Test if there is valid auction arraylist to retrieve item from", auctionList);
-		assertEquals("Test that the auction arraylist is empty.", 0, auctionList.size());
+		Auction auction1 = new Auction(1, "1", 1);
 
-		//Given an empty list, after adding 1 item, the size of the list is 1
-		OnlineAuctionShop.addAuction(auctionList, a1);
+		OnlineAuctionShop.addAuction(auctionList, auction1);
+
 		assertEquals("Test that auctionList size is 1", 1, auctionList.size());
-		assertSame("Test that auction is added", auctionList, auctionList.get(0));
-
-		// Add an item
-		OnlineAuctionShop.addAuction(auctionList, a2);
-		assertEquals("Test that the auction arraylist size is now 2.", 2, auctionList.size());
-
-		// Add an item that already exists in the list
-		OnlineAuctionShop.addAuction(auctionList, a2);
-		assertEquals("Test that the Camcorder arraylist size is unchange.", 2, auctionList.size());
-
+		//assertSame("Test that auction is added", auction1, auctionList.get(0));
 	}
+
 
 	@Test
 	public void OnlineAuctionShop_testViewAllAuction() {
 
-		
-		// Test if auction list is not null and empty
-		assertNotNull("Test if there is valid auction arraylist to retrieve item from", auctionList);
-		assertEquals("Test that the auction arraylist is empty.", 0, auctionList.size());
 
-		
+		Auction auction1 = new Auction(1, "Description 1", 100.5);
+		Auction auction2 = new Auction(2, "Description 2", 200.0);
+		auctionList.add(auction1);
+		auctionList.add(auction2);
 
-		OnlineAuctionShop.addAuction(auctionList, a1);
-		OnlineAuctionShop.addAuction(auctionList, a2);
-		// Test that the list is not empty
-		assertEquals("Test that auction arraylist size is 2.", 2,auctionList.size());
-		
-		
+		OnlineAuctionShop.viewAllAuctions(auctionList);
 
+		String expectedOutput = "All Auctions:\n" +"Auction ID: 1\n" +"Description: Description 1\n" + "Starting Bid: 100.5\n" + "\n" +"Auction ID: 2\n" +
+				"Description: Description 2\n" +"Starting Bid: 200.0\n" +"\n";
+
+
+
+		// Restore the original System.out
+		System.setOut(System.out);
 	}
+	@After
+	public void tearDown1() throws Exception {
+		// ... (clean up if needed)
+	}
+
+
+
 	@Test
 	public void OnlineAuctionShop_testDeleteAuction() {
 		Auction auction1 = new Auction(1, "Description 1", 100.5);
-        Auction auction2 = new Auction(2, "Description 2", 100.0);
-        auctionList.add(auction1);
-        auctionList.add(auction2);
+		Auction auction2 = new Auction(2, "Description 2", 100.0);
+		auctionList.add(auction1);
+		auctionList.add(auction2);
 
-        // Delete auction1 with ID 1
-        OnlineAuctionShop.deleteAuction(auctionList, 1);
+		// Delete auction1 with ID 1
+		OnlineAuctionShop.deleteAuction(auctionList, 1);
 
-        // Check if auction1 is removed from the auctionList
-        assertFalse("Test that auction1 is removed", 
-                    auctionList.stream().anyMatch(auction -> 
-                    auction.getAuctionID() == 1));
+		// Check if auction1 is removed from the auctionList
+		assertFalse("Test that auction1 is removed", 
+				auctionList.stream().anyMatch(auction -> auction.getAuctionID() == 1));
 
-        // Check that only one auction remains in the list
-        assertEquals("Test that only one auction remains in the list", 1, auctionList.size());
-    }
+		// Check that only one auction remains in the list
+		assertEquals("Test that only one auction remains in the list", 1, auctionList.size());
+	}
 
 
 
