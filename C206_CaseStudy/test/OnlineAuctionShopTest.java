@@ -116,10 +116,7 @@ public class OnlineAuctionShopTest {
 		// Restore the original System.out
 		System.setOut(System.out);
 	}
-	@After
-	public void tearDown1() throws Exception {
-		// ... (clean up if needed)
-	}
+	
 
 
 
