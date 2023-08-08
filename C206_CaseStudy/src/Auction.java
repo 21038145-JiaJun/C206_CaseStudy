@@ -27,6 +27,11 @@ public class Auction {
 	public String getDescription() {
 		return description;
 	}
+
+	public String getStartingBid() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }
