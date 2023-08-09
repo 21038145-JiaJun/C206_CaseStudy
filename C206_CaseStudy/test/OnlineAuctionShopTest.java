@@ -59,6 +59,10 @@ public class OnlineAuctionShopTest {
 		a1 = new Auction(1, "Description 1", 100.50);
 		a2 = new Auction(2, "Description 2", 20);
 		a3 = new Auction(3, "Description 3", 300.99);
+		
+		b1 = new Bid(1000, "Letter", 19.99);
+		b2 = new Bid(2000, "Stone", 50.00);
+		b3 = new Bid(2001, "Gravel", 29.95);
 
 		i1 = new Item("I1", "Pencil");
 		i2 = new Item("I2", "Backpack");
@@ -215,7 +219,7 @@ public class OnlineAuctionShopTest {
 		assertNotNull("Test if the auction arraylist to retrieve item", auctionList);
 		assertEquals("Test if the auction arraylist is empty",0,auctionList.size());
 		
-		// Test if the new bid is changed
+		// Test if the arraylist has the higher bid
 		
 	}
 
