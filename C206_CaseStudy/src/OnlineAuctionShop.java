@@ -201,11 +201,12 @@ public class OnlineAuctionShop {
 	private static void viewAllBids(ArrayList<Bid> bidList) {
 
 		for (Bid b : bidList) {
+			Helper.line(30, "=");
 			System.out.println("Bid No. " + (bidList.indexOf(b) + 1));
 			System.out.println("Bid ID: " + b.getBidID());
 			System.out.println("Description: " + b.getDescription());
 			System.out.println("Current Highest Bid: $" + b.getBidding());
-			Helper.line(30, "=");
+			
 
 		}
 		bid();
@@ -213,15 +214,16 @@ public class OnlineAuctionShop {
 	}
 
 	private static void deleteBid(ArrayList<Bid> bidList) {
-
-		viewAllBids(bidList);
 		boolean bidExist = false;
+		int bidIndex = 0;
+		
 
 		int bidID = Helper.readInt("Enter Bid ID to be deleted > ");
 
-		for (Bid b: bidList) {
-			if (bidID == b.getBidID()) {
+		for (int i = 0; i <bidList.size(); i++) {
+			if (bidID == bidList.get(i).getBidID()) {
 				bidExist = true;
+				bidIndex = i;
 				break;
 			}
 		}
@@ -230,8 +232,9 @@ public class OnlineAuctionShop {
 			char confirmation = Helper.readChar("Confirm deletion of payment? (Y/N) > ");
 
 			if (confirmation == 'y' || confirmation == 'Y') {
-				paymentList.remove(bidID - 1);
+				bidList.remove(bidIndex);
 				System.out.println("Bid successfully deleted");
+				bid();
 
 			} else if (confirmation == 'n' || confirmation == 'N') {
 				System.out.println("Bid not deleted");
