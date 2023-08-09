@@ -38,10 +38,13 @@ public class OnlineAuctionShop {
 		Item i1 = new Item("I1", "Pencil");
 		Item i2 = new Item("J2", "Backpack");
 		Payment p1 = new Payment(1, a1, i1, false);
+		Bid b1 = new Bid(1000, "Gavel", 50.40);
+		Bid b2 = new Bid(1001, "Brush", 23.10);
 
 		auctionList.addAll(Arrays.asList(a1, a2));
 		itemList.addAll(Arrays.asList(i1, i2));
 		paymentList.add(p1);
+		bidList.addAll(Arrays.asList(b1, b2));
 
 		int option = OPTION_DEFAULT;
 
@@ -146,60 +149,101 @@ public class OnlineAuctionShop {
 	}
 
 	private static void bid() {
-		int option = OPTION_DEFAULT;
+
 		bidMenu();
+		int option = Helper.readInt("Enter an option > ");
 		while (option != EXIT) {
 			if (option == ADD) {
-
+				addBid(bidList);
 			} else if (option == VIEW_ALL) {
 				// View All Bids
-				viewAllBids(auctionList);
+				viewAllBids(bidList);
 			} else if (option == DELETE) {
 				// Delete Bid
-				deleteBid(auctionList);
+				deleteBid(bidList);
+			}else {
+				System.out.println(ERROR_MSG_OPTION);
+				bid();
 			}
+		}
+		if (option == EXIT) {
+			mainMenu();
 		}
 	}
 
-	private static void addBid(ArrayList<Auction> auctionList) {
-		boolean auctionExist = false;
+	private static void addBid(ArrayList<Bid> bidList) {
+		boolean bidExist = false;
 
-		Auction auction = null;
+		int bidID = Helper.readInt("Enter Bid ID > ");
 
-		int auctionID = Helper.readInt("Enter Auction ID > ");
-
-		for (Auction a : auctionList) {
-			if (a.getAuctionID() == auctionID) {
-				auctionExist = true;
-				auction = a;
-				if (auctionExist == true) {
+		for (Bid b : bidList) {
+			if (b.getBidID() == bidID) {
+				bidExist = true;
+				if (bidExist == true) {
 					double newBid = Helper.readDouble("Enter new bid > $");
-					if (newBid > auction.getCurrentBid()) {
-						a.setCurrentBid(newBid);
+					if (newBid > b.getBidding()) {
+						b.setBidding(newBid);
 						System.out.println("Bid successfully added");
+						bid();
 					} else {
 						System.out.println("Bid is too low!");
+						bid();
 					}
 				}
 			} else {
-				System.out.println("Invalid Auction ID");
+				System.out.println("Invalid Bid ID!");
+				bid();
 			}
 		}
 
 	}
 
-	private static void viewAllBids(ArrayList<Auction> auctionList) {
-		System.out.println("All Bids:");
-		for (Auction auction : auctionList) {
-			System.out.println("Auction ID: " + auction.getAuctionID());
-			System.out.println("Description: " + auction.getDescription());
-			System.out.println("Current Highest Bid: $" + auction.getCurrentBid());
+	private static void viewAllBids(ArrayList<Bid> bidList) {
+
+		for (Bid b : bidList) {
+			System.out.println("Bid No. " + (bidList.indexOf(b) + 1));
+			System.out.println("Bid ID: " + b.getBidID());
+			System.out.println("Description: " + b.getDescription());
+			System.out.println("Current Highest Bid: $" + b.getBidding());
 			Helper.line(30, "=");
+
 		}
+		bid();
 
 	}
 
-	private static void deleteBid(ArrayList<Auction> auctionList) {
+	private static void deleteBid(ArrayList<Bid> bidList) {
+
+		viewAllBids(bidList);
+		boolean bidExist = false;
+
+		int bidID = Helper.readInt("Enter Bid ID to be deleted > ");
+
+		for (Bid b: bidList) {
+			if (bidID == b.getBidID()) {
+				bidExist = true;
+				break;
+			}
+		}
+
+		if (bidExist == true) {
+			char confirmation = Helper.readChar("Confirm deletion of payment? (Y/N) > ");
+
+			if (confirmation == 'y' || confirmation == 'Y') {
+				paymentList.remove(bidID - 1);
+				System.out.println("Bid successfully deleted");
+
+			} else if (confirmation == 'n' || confirmation == 'N') {
+				System.out.println("Bid not deleted");
+				bid();
+			} else {
+				System.out.println(ERROR_MSG_OPTION);
+				bid();
+			}
+		} else {
+			System.out.println("Invalid Bid ID");
+			bid();
+		}
 
 	}
 

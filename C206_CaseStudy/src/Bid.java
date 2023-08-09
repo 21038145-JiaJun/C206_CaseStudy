@@ -1,20 +1,20 @@
 
 public class Bid{
-	private int auctionID;
+	private int bidID;
 	private String description;
 	private double bidding;
 	
 	
 	
-	public Bid(int auctionID, String description, double bidding) {
+	public Bid(int bidID, String description, double bidding) {
 		super();
-		this.auctionID = auctionID;
+		this.bidID = bidID;
 		this.description = description;
 		this.bidding = bidding;
 	}
 
-	public int getAuctionID() {
-		return auctionID;
+	public int getBidID() {
+		return bidID;
 	}
 
 	public String getDescription() {
