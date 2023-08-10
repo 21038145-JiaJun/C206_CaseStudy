@@ -216,13 +216,39 @@ public class OnlineAuctionShopTest {
 		
 		
 		// Test if the new bid is empty
-		assertNotNull("Test if the auction arraylist to retrieve item", auctionList);
-		assertEquals("Test if the auction arraylist is empty",0,auctionList.size());
+		assertNotNull("Test if the bid arraylist to retrieve item", bidList);
+
 		
-		// Test if the arraylist has the higher bid
+		// Test if the arraylist has the the items added
+		bidList.add(b1);
+		bidList.add(b2);
+		bidList.add(b3);
+		assertEquals("Test if the bid arraylist has added 3 entries.",3,bidList.size());
+		
+		// Test if a higher bid changes the value
+		double newBid = 200;
+		assertTrue("Test if current bid is higher than new bid.", newBid > b1.getBidding());
+		
+		// Test that a negative value will not change the value
+		double errorBid = -45.23;
+		assertFalse("Test if current bid is not negative", errorBid > b1.getBidding());
+		
+		// Test that a 0.01 higher bid will change the value
+		double boundaryBid = 50.01;
+		assertTrue("Test if current bid is higher than new bid by 0.01", boundaryBid > b2.getBidding());
+	}
+	
+	@Test
+	public void OnlineAuctionShop_testViewAllBids() {
+		
+		
 		
 	}
 
+	@Test
+	public void OnlineAuctionShop_testDeleteBid() {
+		
+	}
 
 
 	@After
