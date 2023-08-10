@@ -140,7 +140,7 @@ public class OnlineAuctionShop {
 	// ================================= Option 4: Bids (Jia Jun)
 	// =================================
 
-	private static void bidMenu() {
+	public static void bidMenu() {
 		OnlineAuctionShop.setHeader("BID MENU");
 		System.out.println("1. Add a New Bid");
 		System.out.println("2. View All Bids");
@@ -148,7 +148,7 @@ public class OnlineAuctionShop {
 		System.out.println("4. Exit");
 	}
 
-	private static void bid() {
+	public static void bid() {
 
 		bidMenu();
 		int option = Helper.readInt("Enter an option > ");
@@ -161,7 +161,7 @@ public class OnlineAuctionShop {
 			} else if (option == DELETE) {
 				// Delete Bid
 				deleteBid(bidList);
-			}else {
+			} else {
 				System.out.println(ERROR_MSG_OPTION);
 				bid();
 			}
@@ -171,7 +171,7 @@ public class OnlineAuctionShop {
 		}
 	}
 
-	private static void addBid(ArrayList<Bid> bidList) {
+	public static void addBid(ArrayList<Bid> bidList) {
 		boolean bidExist = false;
 
 		int bidID = Helper.readInt("Enter Bid ID > ");
@@ -198,29 +198,35 @@ public class OnlineAuctionShop {
 
 	}
 
-	private static void viewAllBids(ArrayList<Bid> bidList) {
-
+	public static String retrieveAllBids(ArrayList<Bid> bidList) {
+		String output = "";
+		
 		for (Bid b : bidList) {
-			Helper.line(30, "=");
-			System.out.println("Bid No. " + (bidList.indexOf(b) + 1));
-			System.out.println("Bid ID: " + b.getBidID());
-			System.out.println("Description: " + b.getDescription());
-			System.out.println("Current Highest Bid: $" + b.getBidding());
-			
-
+			output+= String.format("%-15d %-15d %-25s $%-15.2f\n",(bidList.indexOf(b)+1), b.getBidID(), b.getDescription(), b.getBidding());
 		}
+		return output;
+	}
+	
+	public static void viewAllBids(ArrayList<Bid> bidList) {
+
+		
+		String output = String.format("%-15s %-15s %-25s %-15s\n", "Auction No.", "Auction ID", "Description", "Highest bid");
+		String output1 = retrieveAllBids(bidList);
+
+		System.out.println(output += output1);
+		
+		
 		bid();
 
 	}
 
-	private static void deleteBid(ArrayList<Bid> bidList) {
+	public static void deleteBid(ArrayList<Bid> bidList) {
 		boolean bidExist = false;
 		int bidIndex = 0;
-		
 
 		int bidID = Helper.readInt("Enter Bid ID to be deleted > ");
 
-		for (int i = 0; i <bidList.size(); i++) {
+		for (int i = 0; i < bidList.size(); i++) {
 			if (bidID == bidList.get(i).getBidID()) {
 				bidExist = true;
 				bidIndex = i;

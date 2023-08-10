@@ -22,9 +22,6 @@ public class Bid{
 	}
 
 
-
-
-
 	public void setBidding(double bidding) {
 		this.bidding = bidding;
 	}
