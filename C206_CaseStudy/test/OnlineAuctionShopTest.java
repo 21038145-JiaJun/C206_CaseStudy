@@ -277,6 +277,7 @@ public class OnlineAuctionShopTest {
 		p3 = null;
 
 		auctionList = null;
+		bidList = null;
 		itemList = null;
 		paymentList = null;
 		userList = null;
