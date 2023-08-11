@@ -160,7 +160,7 @@ public class OnlineAuctionShop {
 				viewAllBids(bidList);
 			} else if (option == DELETE) {
 				// Delete Bid
-				deleteBid(bidList);
+				deleteBid(bidList, 0);
 			} else {
 				System.out.println(ERROR_MSG_OPTION);
 				bid();
@@ -219,15 +219,19 @@ public class OnlineAuctionShop {
 		bid();
 
 	}
+	
+	public static int retrieveBidID() {
+		return Helper.readInt("Enter Bid ID to be deleted > ");
+	}
 
-	public static void deleteBid(ArrayList<Bid> bidList) {
+	public static void deleteBid(ArrayList<Bid> bidList, int bidID) {
 		boolean bidExist = false;
 		int bidIndex = 0;
-
-		int bidID = Helper.readInt("Enter Bid ID to be deleted > ");
+		
+		int inputBid = retrieveBidID();
 
 		for (int i = 0; i < bidList.size(); i++) {
-			if (bidID == bidList.get(i).getBidID()) {
+			if (inputBid == bidList.get(i).getBidID()) {
 				bidExist = true;
 				bidIndex = i;
 				break;
