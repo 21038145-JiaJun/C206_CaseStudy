@@ -52,15 +52,59 @@ public class OnlineAuctionShopTest {
 	// ================================= Test Option 1: User (Cedric) =================================
 	@Test
 	public void OnlineAuctionShop_testAddUser() {
-		//Add a new user
-		  
+		//Add a new user , size of list increased by 1 , which is 2?-Normal
+		 int initialSize = userList.size();
+	        User newUser = new User("Jane", 20791987, "Jane55", "jane55@gmail.com");
+	        userList.add(newUser);
+	        assertEquals("Test that adding a new user should increase the user list size by 1", initialSize + 1, userList.size());
+		
+		
+		//Invalid Id format , size of list remains the same , error message "Invalid Id" should be displayed-Error
+	        User invalidUser = new User("Jane", 225, "Jane55", "jane55d@gmail.com");
+	        userList.add(invalidUser);
+	        assertEquals("Test that adding a user with an invalid ID should not change the user list size", initialSize + 1, userList.size());
 
-
-		assertTrue("OnlineAuctionShop_SampleTest",true);
+		//Maximum number of users exceeded  -Boundary
+	        User userExceedMax = new User("John", 243627272, "John78", "john78@yahoo.com");
+	        userList.add(userExceedMax);
+	        assertEquals("Test that adding a user when the maximum user limit is exceeded should not change the user list size", initialSize + 1, userList.size());
+	    }
+	  
+	
+	public void OnlineAuctionShop_testViewUsers() {
+		//View all users in userList -normal
+		 assertNotNull("Test that userList should not be null", userList);
+	     assertFalse("Test that userList should not be empty", userList.isEmpty());
+	
+		
+		//View userList when userList is null -error/normal
+	     ArrayList<User> nullUserList = null;
+	     assertNull("Test that viewing null user list should result in null", nullUserList);
+		
 	}
+	public void OnlineAuctionShop_testDeleteUser() {
+		//Deleting an existing user , userList should decreased by 1 - Normal
+		 	int initialSize = userList.size();
+			assertTrue("Test that userList should contain u1 before deletion", userList.contains(u1));
+		    userList.remove(u1);
+		    assertFalse("Test that userList should not contain u1 after deletion", userList.contains(u1));
+		    assertEquals("Test that deleting an existing user should decrease the userList size by 1", initialSize - 1, userList.size());
+		
+		  //Deleted User still displays in userList(ViewAllUsers) - error
+	        assertFalse("Test that a deleted user e.g. u1 should not be in user list", userList.contains(u1));
+		
+		//Deletion is done twice - boundary
+	        int newSize = userList.size(); //captures initialSize
+	        boolean userWasRemoved = userList.remove(u1); //returns true if user was found and removed , returns false if user is not found
+	        assertFalse("Test that  deleting the same user again should return false", userWasRemoved); //deleting the same user again should return false
+	        assertEquals("Test that deleting a user again should not affect userList size", newSize, userList.size()); //size of list remains unchanged, comparing the size of newSize and userList 
+	        
+	     //UserList is empty after deletion of all users - normal
+	        userList.clear();
+	        assertTrue("Test that userList should be empty after deleting all users" , userList.isEmpty());
+	    }
 	
-	
-	
+		
 	
 	
 	// ================================= Test Option 5: Payment (Ivan) =================================

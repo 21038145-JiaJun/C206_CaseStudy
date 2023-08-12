@@ -115,27 +115,31 @@ public class OnlineAuctionShop {
 	}
 	
 	public static void addUser(ArrayList<User> UserList ) {
-		User user;
-		for(int i = 0; i < userList.size(); i++) {
-			user = userList.get(i);
-			if (user.getName().equalsIgnoreCase(user.getName())) {
-				return;
+		    String name = Helper.readString("Enter the name: ");
+		    int id = Helper.readInt("Enter the id ");
+		    String password = Helper.readString("Enter the password: ");
+		    String email = Helper.readString("Enter the email: ");
+
+		    for (User user : userList) {
+		        if (user.getName().equalsIgnoreCase(name)) {
+		            return;
+		        }
+		    }
+		    
+		    User newUser = new User(name, id , password, email);
+		    userList.add(newUser);
+		    System.out.println("User added successfully.");
 		}
-		if ((user.getPw().isEmpty()) || (user.getEmail().isEmpty()) ) {
-			return;
-		}
-		
-		userList.add(user);
-	}
-		
-	}
+
+
 	
+
 	
-	public static void viewAllUsers(ArrayList<User> UserList ) {
+	public static void viewAllUsers(ArrayList<User> UserList) {
 			String output = String.format("%-12s %-15s %-25s %-10s\n", "Name", "Id", "Password", "Email");
 			
 			for (User user : userList) {
-				output += String.format("%-12d %-15d %-25s %-10s\n", 
+				output += String.format("%-12s %-15d %-25s %-10s\n", 
 						user.getName(), user.getId() , user.getPw() , user.getEmail());
 			 }
 			Helper.line(80, "=");
