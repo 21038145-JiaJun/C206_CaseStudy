@@ -221,7 +221,8 @@ public class OnlineAuctionShop {
 	}
 
 	public static int retrieveBidID() {
-		return Helper.readInt("Enter Bid ID to be deleted > ");
+		int bidID = Helper.readInt("Enter Bid ID to be deleted > ");
+		return bidID;
 	}
 
 	public static void deleteBid(ArrayList<Bid> bidList, int bidID) {

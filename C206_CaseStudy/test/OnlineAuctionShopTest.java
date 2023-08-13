@@ -253,11 +253,18 @@ public class OnlineAuctionShopTest {
 		bidList.add(b3);
 
 		int bidSize = bidList.size();
-
+		
 		// Test that the array list for bid is not empty
 		assertNotNull("Test that the list is not empty", bidList);
 
-		// Test that the auction ID deletes the bid
+		
+		// Test that the wrong bid ID results in an error
+		int wrongBidID = 6700;
+		OnlineAuctionShop.deleteBid(bidList, wrongBidID);
+		assertFalse("Test that bid is not deleted", bidList.size()==3);
+		
+		
+		// Test that the bid ID deletes the bid
 		OnlineAuctionShop.deleteBid(bidList, b2.getBidID());
 		assertEquals("Test that a bid has been deleted", bidSize - 1, bidList.size());
 	}
