@@ -37,7 +37,7 @@ public class OnlineAuctionShop {
 		Auction a2 = new Auction(2, "A disgusting description", 201);
 		Item i1 = new Item("I1", "Pencil");
 		Item i2 = new Item("J2", "Backpack");
-		Payment p1 = new Payment(1, a1, i1, false);
+		Payment p1 = new Payment(1, a1, i1);
 		Bid b1 = new Bid(1000, "Gavel", 50.40);
 		Bid b2 = new Bid(1001, "Brush", 23.10);
 
@@ -280,19 +280,9 @@ public class OnlineAuctionShop {
 			option = Helper.readInt("Enter an option > ");
 
 			if (option == ADD) {
-				String paymentType = Helper.readString("Would you like to add or make payment? (Add/Make) > ");
-
-				if (paymentType.equalsIgnoreCase("add")) {
-					// Add Payment
-					Payment payment = addPaymentValidation(paymentList, auctionList, itemList);
-					addPayment(paymentList, payment);
-				} else if (paymentType.equalsIgnoreCase("make")) {
-					// Make Payment
-					makePayment(paymentList);
-				} else {
-					System.out.println(ERROR_MSG_OPTION);
-				}
-
+				// Add Payment
+				Payment payment = inputPayment(auctionList, itemList);
+				addPayment(paymentList, auctionList, itemList, payment);
 			} else if (option == VIEW_ALL) {
 				// View All Payment
 				viewAllPayment(paymentList);
@@ -307,95 +297,68 @@ public class OnlineAuctionShop {
 
 	// ================================= Option 1: Add/Make Payment (Ivan)
 	// =================================
-	public static void makePayment(ArrayList<Payment> paymentList) {
-		viewAllPayment(paymentList);
-		int paymentID = Helper.readInt("Enter Payment ID > ");
-		boolean paymentExist = false;
-
-		for (Payment p : paymentList) {
-			if (p.getPaymentID() == paymentID) {
-
-				paymentExist = true;
-				double amount = Helper.readDouble("Enter amount to pay > ");
-
-				if (amount >= p.getAuction().getCurrentBid()) {
-
-					p.makePayment();
-					double change = amount - p.getAuction().getCurrentBid();
-					System.out.println(String.format("Your change is $%.2f", change));
-
-				} else {
-					System.out.println("Insufficient amount to pay");
-				}
-				break;
-			}
-		}
-
-		if (paymentExist == false) {
-			System.out.println("Invalid Payment ID");
-		}
-	}
-
-	public static Payment addPaymentValidation(ArrayList<Payment> paymentList, ArrayList<Auction> auctionList,
-			ArrayList<Item> itemList) {
-		boolean auctionExist = false;
-		boolean itemExist = false;
-		int paymentExist = -1;
-
+	public static Payment inputPayment(ArrayList<Auction> auctionList, ArrayList<Item> itemList) {
+		
 		Auction auction = null;
 		Item item = null;
-
 		int auctionID = Helper.readInt("Enter Auction ID > ");
 		String assetTag = Helper.readString("Enter Asset Tag > ");
-
+		
 		for (Auction a : auctionList) {
-			if (a.getAuctionID() == auctionID) {
-				auctionExist = true;
+			if (auctionID == a.getAuctionID()) {
 				auction = a;
 				break;
 			}
 		}
-
-		if (auctionExist == true) {
-			for (Item i : itemList) {
-				if (i.getAssetTag().equals(assetTag)) {
-					itemExist = true;
-					item = i;
-					break;
-				}
+		
+		for (Item i : itemList) {
+			if (assetTag == i.getAssetTag()) {
+				item = i;
+				break;
 			}
-		} else {
-			System.out.println("Invalid Auction ID");
 		}
-
-		if (itemExist == true) {
-			for (Payment p : paymentList) {
-				if (p.getAuction().getAuctionID() == auctionID
-						&& p.getItem().getAssetTag().equalsIgnoreCase(assetTag)) {
-					paymentExist = 1;
-				} else {
-					paymentExist = 0;
-				}
-			}
-		} else {
-			System.out.println("Invalid Item Assest Tag");
-		}
-
-		if (paymentExist == 0) {
-			Payment payment = new Payment(paymentList.size() + 1, auction, item, false);
-			return payment;
-		} else if (paymentExist == 1) {
-			System.out.println("Payment already exists");
-		}
-		return null;
+		
+		Payment payment = new Payment(1, auction, item);
+		return payment;
+		
 	}
+	
+	public static void addPayment(ArrayList<Payment> paymentList, ArrayList<Auction> auctionList,
+			ArrayList<Item> itemList, Payment payment) {
+		
+		boolean auctionExist = false;
+		boolean itemExist = false;
 
-	public static void addPayment(ArrayList<Payment> paymentList, Payment payment) {
-
-		if (payment != null) {
-			paymentList.add(payment);
-			System.out.println("Payment added successfully");
+		for (Auction a : auctionList) {
+			if (a.getAuctionID() == payment.getAuction().getAuctionID()) {
+				auctionExist = true;
+				break;
+			}
 		}
+
+		for (Item i : itemList) {
+			if (i.getAssetTag().equals(payment.getItem().getAssetTag())) {
+				itemExist = true;
+				break;
+			}
+		}
+
+		if (itemExist == true && auctionExist == true) {
+			for (Payment p : paymentList) {
+				if (p.getAuction() == payment.getAuction() && p.getItem() == payment.getItem()) {
+					System.out.println("Payment already exists");
+					return;
+				} 
+			}
+			
+		} else {
+			System.out.println("Invalid AuctionID or Item Assest Tag");
+			return;
+		}
+
+		paymentList.add(new Payment(paymentList.size()+1, payment.getAuction(), payment.getItem()));
+		System.out.println("Payment added successfully");
+		
 	}
 
 	// ================================= Option 2: View All Payments (Ivan)
