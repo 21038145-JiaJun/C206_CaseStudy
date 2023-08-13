@@ -68,10 +68,9 @@ public class OnlineAuctionShopTest {
 		i2 = new Item("I2", "Backpack");
 		i3 = new Item("I3", "Calculator");
 
-		p1 = new Payment(1, a1, i1, false);
-		p2 = new Payment(2, a2, i2, false);
-		p3 = null;
-		p4 = new Payment(1, a1, i1, false);
+		p1 = new Payment(1, a1, i1);
+		p2 = new Payment(2, a2, i2);
+		p3 = new Payment(1, a1, i1);
 
 		paymentList = new ArrayList<Payment>();
 		objectList = new ArrayList<Object>();
@@ -156,23 +155,26 @@ public class OnlineAuctionShopTest {
 
 	@Test
 	public void OnlineAuctionShop_testAddPayment() {
-
+		//Add necessary objects into auctionList and itemList for validation during check
+		auctionList.addAll(Arrays.asList(a1, a2, a3));
+		itemList.addAll(Arrays.asList(i1, i2, i3));
+		
 		//Payment list is not null, so that can add a new payment - boundary
 		assertNotNull("Check if there is valid Payment arraylist to add to", paymentList);
 		//The payment just added is the as same as the first payment of the list - normal
-		OnlineAuctionShop.addPayment(paymentList, p1);
+		OnlineAuctionShop.addPayment(paymentList, auctionList, itemList, p1);
 		assertEquals("Check that Payment arraylist size is 1", 1, paymentList.size());
 		assertSame("Check that Payment is added", p1, paymentList.get(0));
 
 		//Add another payment. Test that the size of the list is 2 -normal
 		//The payment just added is as same as the second payment of the list
-		OnlineAuctionShop.addPayment(paymentList, p2);
+		OnlineAuctionShop.addPayment(paymentList, auctionList, itemList, p2);
 		assertEquals("Check that Payment arraylist size is 2", 2, paymentList.size());
 		assertSame("Check that Payment is added", p2, paymentList.get(1));
 
-		//Test that adding payment with no fields to the list fails - error
-		assertNull("Check that payment in list, and the payment to add is the same", p3);
-		OnlineAuctionShop.addPayment(paymentList, p3);
+		//Test that adding payment that already exists to the list fails - error
+		assertSame("Check that payment in list, and the payment to add is the same", p1, p3);
+		OnlineAuctionShop.addPayment(paymentList, auctionList, itemList, p3);
 		//The Payment list size does not change, and the payment is not added
 		assertEquals("Check that Payment arraylist size is 2", 2, paymentList.size());
 
@@ -181,6 +183,10 @@ public class OnlineAuctionShopTest {
 
 	@Test
 	public void OnlineAuctionShop_testViewAllPayment() {
+		//Add necessary objects into auctionList and itemList for validation during check
+		auctionList.addAll(Arrays.asList(a1, a2, a3));
+		itemList.addAll(Arrays.asList(i1, i2, i3));
+		
 		//Test if Payment list is not null but empty - boundary
 		assertNotNull("Test if there is valid Payment arraylist to retrieve item", paymentList);
 
@@ -190,8 +196,8 @@ public class OnlineAuctionShopTest {
 		assertEquals("Test that ViewAllPayment is empty", testOutput, allPayment);
 
 		//Given an empty list, after adding 2 payments, test if the size of the list is 2 - normal
-		OnlineAuctionShop.addPayment(paymentList, p1);
-		OnlineAuctionShop.addPayment(paymentList, p2);
+		OnlineAuctionShop.addPayment(paymentList, auctionList, itemList, p1);
+		OnlineAuctionShop.addPayment(paymentList, auctionList, itemList, p2);
 		assertEquals("Test that Payment arraylist size is 2", 2, paymentList.size());
 
 		//Test if the expected output string is the same as the list of payments retrieved from the OnlineAuctionShop	
@@ -206,7 +212,13 @@ public class OnlineAuctionShopTest {
 
 	@Test
 	public void OnlineAuctionShop_testDeletePayment() {
-
+		//Add necessary objects into auctionList and itemList for validation during check
+		auctionList.addAll(Arrays.asList(a1, a2, a3));
+		itemList.addAll(Arrays.asList(i1, i2, i3));
+		
+		
+		
+		
 	}
 
 	
