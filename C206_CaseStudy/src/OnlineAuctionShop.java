@@ -299,6 +299,7 @@ public class OnlineAuctionShop {
 
 		Auction auction = null;
 		Item item = null;
+		int paymentID = Helper.readInt("Enter Payment ID > ");
 		int auctionID = Helper.readInt("Enter Auction ID > ");
 		String assetTag = Helper.readString("Enter Asset Tag > ");
 
@@ -316,7 +317,7 @@ public class OnlineAuctionShop {
 			}
 		}
 
-		Payment payment = new Payment(1, auction, item);
+		Payment payment = new Payment(paymentID, auction, item);
 		return payment;
 
 	}
@@ -354,7 +355,7 @@ public class OnlineAuctionShop {
 			return;
 		}
 
-		paymentList.add(new Payment(paymentList.size() + 1, payment.getAuction(), payment.getItem()));
+		paymentList.add(payment);
 		System.out.println("Payment added successfully");
 
 	}

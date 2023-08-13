@@ -36,8 +36,7 @@ public class OnlineAuctionShopTest {
 
 	private Payment p1;
 	private Payment p2;
-	private Payment p3;
-	private Payment p4;
+
 
 	public OnlineAuctionShopTest() {
 		super();
@@ -68,7 +67,6 @@ public class OnlineAuctionShopTest {
 
 		p1 = new Payment(1, a1, i1);
 		p2 = new Payment(2, a2, i2);
-		p3 = new Payment(1, a1, i1);
 
 		paymentList = new ArrayList<Payment>();
 		auctionList = new ArrayList<Auction>();
@@ -170,8 +168,8 @@ public class OnlineAuctionShopTest {
 		assertSame("Check that Payment is added", p2, paymentList.get(1));
 
 		//Test that adding payment that already exists to the list fails - error
-		assertSame("Check that payment in list, and the payment to add is the same", p1, p3);
-		OnlineAuctionShop.addPayment(paymentList, auctionList, itemList, p3);
+		assertSame("Check that payment in list, and the payment to add is the same", p1, paymentList.get(0));
+		OnlineAuctionShop.addPayment(paymentList, auctionList, itemList, p1);
 		//The Payment list size does not change, and the payment is not added
 		assertEquals("Check that Payment arraylist size is 2", 2, paymentList.size());
 
@@ -345,7 +343,6 @@ public class OnlineAuctionShopTest {
 
 		p1 = null;
 		p2 = null;
-		p3 = null;
 
 		auctionList = null;
 		bidList = null;
