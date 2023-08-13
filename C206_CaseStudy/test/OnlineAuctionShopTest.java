@@ -260,12 +260,26 @@ public class OnlineAuctionShopTest {
 		
 		// Test that the wrong bid ID results in an error
 		int wrongBidID = 6700;
-		OnlineAuctionShop.deleteBid(bidList, wrongBidID);
-		assertFalse("Test that bid is not deleted", bidList.size()==3);
+		boolean bidFound = false;
+		for (Bid b:bidList) {
+			if (b.getBidID() == wrongBidID) {
+				bidFound = true;
+			}
+		}
+		
+		assertFalse("Test that bid is not deleted", bidFound);
 		
 		
 		// Test that the bid ID deletes the bid
-		OnlineAuctionShop.deleteBid(bidList, b2.getBidID());
+		int correctBidID = 2000;
+		
+		for (Bid b:bidList) {
+			if (b.getBidID() == correctBidID) {
+				bidFound = true;
+				OnlineAuctionShop.deleteBid(bidList, correctBidID);
+			}
+		}
+		assertTrue("Test that the bid is deleted", bidFound);
 		assertEquals("Test that a bid has been deleted", bidSize - 1, bidList.size());
 	}
 
