@@ -349,5 +349,6 @@ public class OnlineAuctionShopTest {
 		itemList = null;
 		paymentList = null;
 		userList = null;
+		
 	}
 }
