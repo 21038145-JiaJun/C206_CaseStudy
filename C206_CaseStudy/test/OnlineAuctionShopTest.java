@@ -161,7 +161,7 @@ public class OnlineAuctionShopTest {
 		//The payment just added is the as same as the first payment of the list - normal
 		OnlineAuctionShop.addPayment(paymentList, auctionList, itemList, p1);
 		assertEquals("Check that Payment arraylist size is 1", 1, paymentList.size());
-		assertSame("Check that Payment is added", p3, paymentList.get(0));
+		assertSame("Check that Payment is added", p1, paymentList.get(0));
 
 		//Add another payment. Test that the size of the list is 2 -normal
 		//The payment just added is as same as the second payment of the list
@@ -217,6 +217,13 @@ public class OnlineAuctionShopTest {
 		OnlineAuctionShop.removePayment(2);
 		assertEquals("Test that Payment arraylist size is 1", 1, paymentList.size());
 		
+		//Test Payment List is still 1 after deleting payment with non-existent paymentID - error
+		OnlineAuctionShop.removePayment(2);
+		assertEquals("Test that Payment arraylist size is 1", 1, paymentList.size());
+		
+		//Test Payment List is 0 after deleting only existing payment - boundary
+		OnlineAuctionShop.removePayment(1);
+		assertEquals("Test that Payment arraylist size is 0", 0, paymentList.size());
 	}
 
 	
