@@ -194,7 +194,7 @@ public class OnlineAuctionShopTest {
 		OnlineAuctionShop.addPayment(paymentList, auctionList, itemList, p1);
 		OnlineAuctionShop.addPayment(paymentList, auctionList, itemList, p2);
 		assertEquals("Test that Payment arraylist size is 2", 2, paymentList.size());
-
+		
 		//Test if the expected output string is the same as the list of payments retrieved from the OnlineAuctionShop	
 		allPayment = OnlineAuctionShop.retrieveAllPayment(paymentList);
 		testOutput = String.format("%-12d %-12d %-15s %-25s %-10.2f %-10s\n", 1, 1, "I1", "Pencil", 100.50, "No");
