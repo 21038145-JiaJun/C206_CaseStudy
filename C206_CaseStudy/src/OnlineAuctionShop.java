@@ -20,7 +20,6 @@ public class OnlineAuctionShop {
 	private static final String ERROR_MSG_OPTION = "Invalid option";
 
 	private static ArrayList<Payment> paymentList = new ArrayList<Payment>();
-	private static ArrayList<Object> objectList = new ArrayList<Object>();
 	private static ArrayList<Item> itemList = new ArrayList<Item>();
 	private static ArrayList<User> userList = new ArrayList<User>();
 	private static ArrayList<Auction> auctionList = new ArrayList<Auction>();
@@ -37,13 +36,11 @@ public class OnlineAuctionShop {
 		Auction a2 = new Auction(2, "A disgusting description", 201);
 		Item i1 = new Item("I1", "Pencil");
 		Item i2 = new Item("J2", "Backpack");
-		Payment p1 = new Payment(1, a1, i1);
 		Bid b1 = new Bid(1000, "Gavel", 50.40);
 		Bid b2 = new Bid(1001, "Brush", 23.10);
 
 		auctionList.addAll(Arrays.asList(a1, a2));
 		itemList.addAll(Arrays.asList(i1, i2));
-		paymentList.add(p1);
 		bidList.addAll(Arrays.asList(b1, b2));
 
 		int option = OPTION_DEFAULT;
@@ -266,7 +263,7 @@ public class OnlineAuctionShop {
 
 	public static void paymentMenu() {
 		OnlineAuctionShop.setHeader("PAYMENT MENU");
-		System.out.println("1. Add/Make Payment");
+		System.out.println("1. Add Payment");
 		System.out.println("2. View All Payment");
 		System.out.println("3. Delete an Existing Payment");
 		System.out.println("4. Exit");
@@ -313,7 +310,7 @@ public class OnlineAuctionShop {
 		}
 
 		for (Item i : itemList) {
-			if (assetTag == i.getAssetTag()) {
+			if (assetTag.equals(i.getAssetTag())) {
 				item = i;
 				break;
 			}
@@ -338,7 +335,7 @@ public class OnlineAuctionShop {
 		}
 
 		for (Item i : itemList) {
-			if (i.getAssetTag().equals(payment.getItem().getAssetTag())) {
+			if (payment.getItem().getAssetTag().equals(i.getAssetTag())) {
 				itemExist = true;
 				break;
 			}
