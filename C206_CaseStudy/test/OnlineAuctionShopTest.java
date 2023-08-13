@@ -243,13 +243,15 @@ public class OnlineAuctionShopTest {
 		// Test that there are no bids in the array list.
 		assertNotNull("Test if the bid arraylist to retrieve item", bidList);
 		
-		// Test that the bids are empty in the array list
-		assertEquals("Test that viewAllBids array list is empty",0, bidList.size());
+
 		
 		// Test that bid are shown correctly
 		bidList.add(b1);
 		bidList.add(b2);
 		bidList.add(b3);
+		
+		// Test that the bids are added correctly
+		assertEquals("Test that viewAllBids array list is empty",3, bidList.size());
 		
 		String actualOutput = OnlineAuctionShop.retrieveAllBids(bidList);
 		String testOutput = "";
@@ -257,7 +259,7 @@ public class OnlineAuctionShopTest {
 		testOutput += String.format("%-15d %-15d %-25s $%-15.2f\n",2, 2000, "Stone", 50.00);
 		testOutput += String.format("%-15d %-15d %-25s $%-15.2f\n",3, 2001, "Gravel", 29.95);
 		
-		assertEquals("Test that the output is the same.", actualOutput, testOutput);
+		assertEquals("Test that the output is the same.", testOutput, actualOutput);
 		
 	}
 
