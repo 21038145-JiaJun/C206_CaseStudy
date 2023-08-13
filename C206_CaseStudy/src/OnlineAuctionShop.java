@@ -278,7 +278,7 @@ public class OnlineAuctionShop {
 
 			if (option == ADD) {
 				// Add Payment
-				Payment payment = inputPayment(auctionList, itemList);
+				Payment payment = inputAddPayment(auctionList, itemList);
 				addPayment(paymentList, auctionList, itemList, payment);
 			} else if (option == VIEW_ALL) {
 				// View All Payment
@@ -294,7 +294,7 @@ public class OnlineAuctionShop {
 
 	// ================================= Option 1: Add/Make Payment (Ivan)
 	// =================================
-	public static Payment inputPayment(ArrayList<Auction> auctionList, ArrayList<Item> itemList) {
+	public static Payment inputAddPayment(ArrayList<Auction> auctionList, ArrayList<Item> itemList) {
 
 		Auction auction = null;
 		Item item = null;
@@ -327,14 +327,14 @@ public class OnlineAuctionShop {
 		boolean itemExist = false;
 
 		for (Auction a : auctionList) {
-			if (a.getAuctionID() == payment.getAuction().getAuctionID()) {
+			if (a.equals(payment.getAuction())) {
 				auctionExist = true;
 				break;
 			}
 		}
 
 		for (Item i : itemList) {
-			if (payment.getItem().getAssetTag().equals(i.getAssetTag())) {
+			if (i.equals(payment.getItem())) {
 				itemExist = true;
 				break;
 			}
@@ -383,12 +383,11 @@ public class OnlineAuctionShop {
 
 	// ================================= Option 3: Delete Payments (Ivan)
 	// =================================
+	
 	public static void deletePayment(ArrayList<Payment> paymentList) {
-
 		viewAllPayment(paymentList);
-		boolean paymentExist = false;
-
 		int paymentID = Helper.readInt("Enter Payment ID to be deleted > ");
+		boolean paymentExist = false;
 
 		for (Payment p : paymentList) {
 			if (paymentID == p.getPaymentID()) {
@@ -401,9 +400,7 @@ public class OnlineAuctionShop {
 			char confirmation = Helper.readChar("Confirm deletion of payment? (Y/N) > ");
 
 			if (confirmation == 'y' || confirmation == 'Y') {
-				paymentList.remove(paymentID - 1);
-				System.out.println("Payment successfully deleted");
-
+				removePayment(paymentID);
 			} else if (confirmation == 'n' || confirmation == 'N') {
 				System.out.println("Deleting cancelled");
 			} else {
@@ -412,6 +409,11 @@ public class OnlineAuctionShop {
 		} else {
 			System.out.println("Invalid Payment ID");
 		}
+	}
+	
+	public static void removePayment(int paymentID) {
+		paymentList.remove(paymentID - 1);
+		System.out.println("Payment successfully deleted");
 	}
 
 	// ================================= Option 1: [Auction] ([Wang tianqi])
