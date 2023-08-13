@@ -200,26 +200,26 @@ public class OnlineAuctionShop {
 
 	public static String retrieveAllBids(ArrayList<Bid> bidList) {
 		String output = "";
-		
+
 		for (Bid b : bidList) {
-			output+= String.format("%-15d %-15d %-25s $%-15.2f\n",(bidList.indexOf(b)+1), b.getBidID(), b.getDescription(), b.getBidding());
+			output += String.format("%-15d %-15d %-25s $%-15.2f\n", (bidList.indexOf(b) + 1), b.getBidID(),
+					b.getDescription(), b.getBidding());
 		}
 		return output;
 	}
-	
+
 	public static void viewAllBids(ArrayList<Bid> bidList) {
 
-		
-		String output = String.format("%-15s %-15s %-25s %-15s\n", "Auction No.", "Auction ID", "Description", "Highest bid");
+		String output = String.format("%-15s %-15s %-25s %-15s\n", "Auction No.", "Auction ID", "Description",
+				"Highest bid");
 		String output1 = retrieveAllBids(bidList);
 
 		System.out.println(output += output1);
-		
-		
+
 		bid();
 
 	}
-	
+
 	public static int retrieveBidID() {
 		return Helper.readInt("Enter Bid ID to be deleted > ");
 	}
@@ -227,7 +227,7 @@ public class OnlineAuctionShop {
 	public static void deleteBid(ArrayList<Bid> bidList, int bidID) {
 		boolean bidExist = false;
 		int bidIndex = 0;
-		
+
 		int inputBid = retrieveBidID();
 
 		for (int i = 0; i < bidList.size(); i++) {
@@ -298,34 +298,34 @@ public class OnlineAuctionShop {
 	// ================================= Option 1: Add/Make Payment (Ivan)
 	// =================================
 	public static Payment inputPayment(ArrayList<Auction> auctionList, ArrayList<Item> itemList) {
-		
+
 		Auction auction = null;
 		Item item = null;
 		int auctionID = Helper.readInt("Enter Auction ID > ");
 		String assetTag = Helper.readString("Enter Asset Tag > ");
-		
+
 		for (Auction a : auctionList) {
 			if (auctionID == a.getAuctionID()) {
 				auction = a;
 				break;
 			}
 		}
-		
+
 		for (Item i : itemList) {
 			if (assetTag == i.getAssetTag()) {
 				item = i;
 				break;
 			}
 		}
-		
+
 		Payment payment = new Payment(1, auction, item);
 		return payment;
-		
+
 	}
-	
+
 	public static void addPayment(ArrayList<Payment> paymentList, ArrayList<Auction> auctionList,
 			ArrayList<Item> itemList, Payment payment) {
-		
+
 		boolean auctionExist = false;
 		boolean itemExist = false;
 
@@ -348,17 +348,17 @@ public class OnlineAuctionShop {
 				if (p.getAuction() == payment.getAuction() && p.getItem() == payment.getItem()) {
 					System.out.println("Payment already exists");
 					return;
-				} 
+				}
 			}
-			
+
 		} else {
 			System.out.println("Invalid AuctionID or Item Assest Tag");
 			return;
 		}
 
-		paymentList.add(new Payment(paymentList.size()+1, payment.getAuction(), payment.getItem()));
+		paymentList.add(new Payment(paymentList.size() + 1, payment.getAuction(), payment.getItem()));
 		System.out.println("Payment added successfully");
-		
+
 	}
 
 	// ================================= Option 2: View All Payments (Ivan)
