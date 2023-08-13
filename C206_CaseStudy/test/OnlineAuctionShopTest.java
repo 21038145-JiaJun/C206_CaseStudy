@@ -1,6 +1,5 @@
 import static org.junit.Assert.*;
 
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -72,7 +71,6 @@ public class OnlineAuctionShopTest {
 		p3 = new Payment(1, a1, i1);
 
 		paymentList = new ArrayList<Payment>();
-		objectList = new ArrayList<Object>();
 		auctionList = new ArrayList<Auction>();
 		itemList = new ArrayList<Item>();
 		userList = new ArrayList<User>();
@@ -163,7 +161,7 @@ public class OnlineAuctionShopTest {
 		//The payment just added is the as same as the first payment of the list - normal
 		OnlineAuctionShop.addPayment(paymentList, auctionList, itemList, p1);
 		assertEquals("Check that Payment arraylist size is 1", 1, paymentList.size());
-		assertSame("Check that Payment is added", p1, paymentList.get(0));
+		assertSame("Check that Payment is added", p3, paymentList.get(0));
 
 		//Add another payment. Test that the size of the list is 2 -normal
 		//The payment just added is as same as the second payment of the list
@@ -203,20 +201,21 @@ public class OnlineAuctionShopTest {
 		allPayment = OnlineAuctionShop.retrieveAllPayment(paymentList);
 		testOutput = String.format("%-12d %-12d %-15s %-25s %-10.2f %-10s\n", 1, 1, "I1", "Pencil", 100.50, "No");
 		testOutput += String.format("%-12d %-12d %-15s %-25s %-10.2f %-10s\n", 2, 2, "I2", "Backpack", 20.00, "No");
-
 		assertEquals("Test that ViewAllPayment matches", testOutput, allPayment);
-
+		
 	}
 
 
 	@Test
 	public void OnlineAuctionShop_testDeletePayment() {
-		//Add necessary objects into auctionList and itemList for validation during check
-		auctionList.addAll(Arrays.asList(a1, a2, a3));
-		itemList.addAll(Arrays.asList(i1, i2, i3));
+		//Test if Payment list is not null but empty - boundary
+		assertNotNull("Test if there is valid Payment arraylist to retrieve item", paymentList);
 		
-		
-		
+		//Add Payment to list for testing removePayment
+		paymentList.addAll(Arrays.asList(p1, p2));
+		//Test Payment List is 1 after deleting payment - normal
+		OnlineAuctionShop.removePayment(2);
+		assertEquals("Test that Payment arraylist size is 1", 1, paymentList.size());
 		
 	}
 
