@@ -307,13 +307,12 @@ public class OnlineAuctionShopTest {
 			}
 		}
 		assertTrue("Test that the bid is deleted", bidFound);
-=======
+
 		//Test that the array list for bid is not empty
 		assertNotNull("Test that the list is not empty",bidList);
 		
 		//Test that the auction ID deletes the bid
 		OnlineAuctionShop.deleteBid(bidList, b2.getBidID());
->>>>>>> branch 'master' of https://github.com/21038145-JiaJun/C206_CaseStudy.git
 		assertEquals("Test that a bid has been deleted", bidSize - 1, bidList.size());
 	}
 
