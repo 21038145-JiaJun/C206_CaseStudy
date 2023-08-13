@@ -279,7 +279,6 @@ public class OnlineAuctionShopTest {
 		
 		int bidSize = bidList.size();
 		
-<<<<<<< HEAD
 		// Test that the array list for bid is not empty
 		assertNotNull("Test that the list is not empty", bidList);
 
