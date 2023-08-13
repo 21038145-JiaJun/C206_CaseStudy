@@ -11,7 +11,6 @@ import org.junit.Test;
 public class OnlineAuctionShopTest {
 	//prepare test data
 	private ArrayList<Payment> paymentList;
-	private ArrayList<Object> objectList;
 	private ArrayList<Item> itemList;
 	private ArrayList<User> userList;
 	private ArrayList<Auction> auctionList;
