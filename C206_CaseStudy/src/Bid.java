@@ -1,11 +1,26 @@
 
-public class Bid extends Item{
+public class Bid{
+	private int bidID;
+	private String description;
 	private double bidding;
 	
-	public Bid(String assetTag, String description, double bidding) {
-		super(assetTag, description);
+	
+	
+	public Bid(int bidID, String description, double bidding) {
+		super();
+		this.bidID = bidID;
+		this.description = description;
 		this.bidding = bidding;
 	}
+
+	public int getBidID() {
+		return bidID;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
 
 	public void setBidding(double bidding) {
 		this.bidding = bidding;

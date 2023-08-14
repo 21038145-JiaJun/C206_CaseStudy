@@ -7,11 +7,11 @@ public class Payment {
 	private boolean paid;
 	
 	
-	public Payment(int paymentID, Auction auction, Item item, boolean paid) {
+	public Payment(int paymentID, Auction auction, Item item) {
 		this.paymentID = paymentID;
 		this.auction = auction;
 		this.item = item;
-		this.paid = paid;
+		this.paid = false;
 	}
 
 	public String isPaid() {
