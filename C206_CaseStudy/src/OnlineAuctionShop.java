@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 public class OnlineAuctionShop {
@@ -30,16 +31,16 @@ public class OnlineAuctionShop {
 
 	private static void launch() {
 
-//		Auction a1 = new Auction(1, "A beautiful description", 100.50);
-//		Auction a2 = new Auction(2, "A disgusting description", 201);
-//		Item i1 = new Item("I1", "Pencil");
-//		Item i2 = new Item("J2", "Backpack");
-//		Bid b1 = new Bid(1000, "Gavel", 50.40);
-//		Bid b2 = new Bid(1001, "Brush", 23.10);
-//
-//		auctionList.addAll(Arrays.asList(a1, a2));
-//		itemList.addAll(Arrays.asList(i1, i2));
-//		bidList.addAll(Arrays.asList(b1, b2));
+		Auction a1 = new Auction(1, "A beautiful description", 100.50);
+		Auction a2 = new Auction(2, "A disgusting description", 201);
+		Item i1 = new Item("I1", "Pencil");
+		Item i2 = new Item("J2", "Backpack");
+		Bid b1 = new Bid(1000, "Gavel", 50.40);
+		Bid b2 = new Bid(1001, "Brush", 23.10);
+
+		auctionList.addAll(Arrays.asList(a1, a2));
+		itemList.addAll(Arrays.asList(i1, i2));
+		bidList.addAll(Arrays.asList(b1, b2));
 
 		int option = OPTION_DEFAULT;
 
