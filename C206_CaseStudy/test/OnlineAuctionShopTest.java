@@ -10,7 +10,6 @@ import org.junit.Test;
 public class OnlineAuctionShopTest {
 	//prepare test data
 	private static ArrayList<Payment> paymentList = new ArrayList<Payment>();
-	private static ArrayList<Object> objectList = new ArrayList<Object>();
 	private static ArrayList<Item> itemList = new ArrayList<Item>();
 	private static ArrayList<User> userList = new ArrayList<User>();
 	private static ArrayList<Auction> auctionList = new ArrayList<Auction>();
