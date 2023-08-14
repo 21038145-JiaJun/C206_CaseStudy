@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 
 public class OnlineAuctionShop {
@@ -32,16 +31,16 @@ public class OnlineAuctionShop {
 
 	private static void launch() {
 
-		Auction a1 = new Auction(1, "A beautiful description", 100.50);
-		Auction a2 = new Auction(2, "A disgusting description", 201);
-		Item i1 = new Item("I1", "Pencil");
-		Item i2 = new Item("J2", "Backpack");
-		Bid b1 = new Bid(1000, "Gavel", 50.40);
-		Bid b2 = new Bid(1001, "Brush", 23.10);
-
-		auctionList.addAll(Arrays.asList(a1, a2));
-		itemList.addAll(Arrays.asList(i1, i2));
-		bidList.addAll(Arrays.asList(b1, b2));
+//		Auction a1 = new Auction(1, "A beautiful description", 100.50);
+//		Auction a2 = new Auction(2, "A disgusting description", 201);
+//		Item i1 = new Item("I1", "Pencil");
+//		Item i2 = new Item("J2", "Backpack");
+//		Bid b1 = new Bid(1000, "Gavel", 50.40);
+//		Bid b2 = new Bid(1001, "Brush", 23.10);
+//
+//		auctionList.addAll(Arrays.asList(a1, a2));
+//		itemList.addAll(Arrays.asList(i1, i2));
+//		bidList.addAll(Arrays.asList(b1, b2));
 
 		int option = OPTION_DEFAULT;
 
@@ -61,7 +60,7 @@ public class OnlineAuctionShop {
 			} else if (option == OPTION_PAYMENT) {
 				payment();
 			} else if (option == OPTION_QUIT) {
-
+				
 			} else {
 				System.out.println(ERROR_MSG_OPTION);
 			}
@@ -87,8 +86,8 @@ public class OnlineAuctionShop {
 		Helper.line(120, "-");
 	}
 
-	// ================================= Option 1: Users (Cedric)
-	// =================================
+	// ===== Option 1: Users (Cedric)
+	// =====
 	private static void user() {
 		int option = OPTION_DEFAULT;
 		userMenu();
@@ -104,8 +103,17 @@ public class OnlineAuctionShop {
 				// Delete an existing user
 				deleteUser(userList);
 			}
-		}
+			userMenu();
+            option = Helper.readInt("Enter an option >");
+        }
+		
 	}
+
+		
+    
+	
+
+
 
 	private static void userMenu() {
 		OnlineAuctionShop.setHeader("USER MENU");
@@ -115,9 +123,34 @@ public class OnlineAuctionShop {
 		System.out.println("4. Exit");
 	}
 
-	public static void addUser(ArrayList<User> UserList) {
 
-	}
+	public static void addUser(ArrayList<User> userList ) {
+		    String name = Helper.readString("Enter the name: ");
+		    int id = Helper.readInt("Enter the id ");
+		    String password = Helper.readString("Enter the password: ");
+		    String email = Helper.readString("Enter the email: ");
+		    
+		    if(id < 0) {
+		    	System.out.println("Invalid Id.");
+		    	return;
+		    }
+
+		    for (User user : userList) {
+		        if (user.getName().equalsIgnoreCase(name)) {
+		            return;
+		        }
+		        
+		      if (userList.size() >= 200) {
+		            System.out.println("Maximum number of users exceeded.");
+		            return;
+		        }
+		    }
+		    
+		    User newUser = new User(name, id , password, email);
+		    userList.add(newUser);
+		    System.out.println("User added successfully.");
+		}
+
 
 	public static void viewAllUsers(ArrayList<User> UserList) {
 		String output = String.format("%-12s %-15s %-25s %-10s\n", "Name", "Id", "Password", "Email");
@@ -125,17 +158,40 @@ public class OnlineAuctionShop {
 		for (User user : userList) {
 			output += String.format("%-12d %-15d %-25s %-10s\n", user.getName(), user.getId(), user.getPw(),
 					user.getEmail());
+
 		}
+
 		Helper.line(80, "=");
 		System.out.println(output);
 	}
 
-	public static void deleteUser(ArrayList<User> UserList) {
 
-	}
 
-	// ================================= Option 4: Bids (Jia Jun)
-	// =================================
+	public static void deleteUser(ArrayList<User> userList ) {
+	    if (userList.isEmpty()) {
+            System.out.println("No users to delete.");
+            return;
+        }
+		    String name = Helper.readString("Enter the name of the user to delete: ");
+		    boolean isDeleted = false;
+
+		    for (int i = 0; i < userList.size(); i++) {
+		        User user = userList.get(i);
+		        if (user.getName().equalsIgnoreCase(name)) {
+		            userList.remove(i);
+		            System.out.println("User " + name + " has been deleted.");
+		            isDeleted = true;
+		            break;
+		        }
+		    }
+
+		    if (!isDeleted) {
+		        System.out.println("User " + name + " not found.");
+		    }
+		}
+
+	// ===== Option 4: Bids (Jia Jun)
+	// =====
 
 	public static void bidMenu() {
 		OnlineAuctionShop.setHeader("BID MENU");
@@ -226,10 +282,10 @@ public class OnlineAuctionShop {
 		boolean bidExist = false;
 		int bidIndex = 0;
 
-		int inputBid = retrieveBidID();
+		bidID = retrieveBidID();
 
 		for (int i = 0; i < bidList.size(); i++) {
-			if (inputBid == bidList.get(i).getBidID()) {
+			if (bidID == bidList.get(i).getBidID()) {
 				bidExist = true;
 				bidIndex = i;
 				break;
@@ -237,7 +293,7 @@ public class OnlineAuctionShop {
 		}
 
 		if (bidExist == true) {
-			char confirmation = Helper.readChar("Confirm deletion of payment? (Y/N) > ");
+			char confirmation = Helper.readChar("Confirm deletion of bid? (Y/N) > ");
 
 			if (confirmation == 'y' || confirmation == 'Y') {
 				bidList.remove(bidIndex);
@@ -258,8 +314,8 @@ public class OnlineAuctionShop {
 
 	}
 
-	// ================================= Option 5: Payment (Ivan)
-	// =================================
+	// ===== Option 5: Payment (Ivan)
+	// =====
 
 	public static void paymentMenu() {
 		OnlineAuctionShop.setHeader("PAYMENT MENU");
@@ -293,8 +349,8 @@ public class OnlineAuctionShop {
 		}
 	}
 
-	// ================================= Option 1: Add/Make Payment (Ivan)
-	// =================================
+	// ===== Option 1: Add/Make Payment (Ivan)
+	// =====
 	public static Payment inputAddPayment(ArrayList<Auction> auctionList, ArrayList<Item> itemList) {
 
 		Auction auction = null;
@@ -344,7 +400,7 @@ public class OnlineAuctionShop {
 
 		if (itemExist == true && auctionExist == true) {
 			for (Payment p : paymentList) {
-				if (p.getAuction() == payment.getAuction() && p.getItem() == payment.getItem()) {
+				if (p.getAuction().equals(payment.getAuction()) && p.getItem().equals(payment.getItem())) {
 					System.out.println("Payment already exists");
 					return;
 				}
@@ -360,8 +416,8 @@ public class OnlineAuctionShop {
 
 	}
 
-	// ================================= Option 2: View All Payments (Ivan)
-	// =================================
+	// ===== Option 2: View All Payments (Ivan)
+	// =====
 	public static String retrieveAllPayment(ArrayList<Payment> paymentList) {
 		String output = "";
 
@@ -383,8 +439,8 @@ public class OnlineAuctionShop {
 		System.out.println(output += output1);
 	}
 
-	// ================================= Option 3: Delete Payments (Ivan)
-	// =================================
+	// ===== Option 3: Delete Payments (Ivan)
+	// =====
 	
 	public static void deletePayment(ArrayList<Payment> paymentList) {
 		viewAllPayment(paymentList);
@@ -402,7 +458,7 @@ public class OnlineAuctionShop {
 			char confirmation = Helper.readChar("Confirm deletion of payment? (Y/N) > ");
 
 			if (confirmation == 'y' || confirmation == 'Y') {
-				removePayment(paymentID);
+				removePayment(paymentList, paymentID);
 			} else if (confirmation == 'n' || confirmation == 'N') {
 				System.out.println("Deleting cancelled");
 			} else {
@@ -413,13 +469,17 @@ public class OnlineAuctionShop {
 		}
 	}
 	
-	public static void removePayment(int paymentID) {
-		paymentList.remove(paymentID - 1);
-		System.out.println("Payment successfully deleted");
+	public static void removePayment(ArrayList<Payment> paymentList, int paymentID) {
+		for (int i = 0; i < paymentList.size(); i++) {
+			if (paymentList.get(i).getPaymentID() == paymentID) {
+				paymentList.remove(i);
+				System.out.println("Payment successfully deleted");
+			}
+		}
 	}
 
-	// ================================= Option 1: [Auction] ([Wang tianqi])
-	// =================================
+	// ===== Option 1: [Auction] ([Wang tianqi])
+	// =====
 
 	public static void auctionMenu() {
 		OnlineAuctionShop.setHeader("AUCTION MENU");
