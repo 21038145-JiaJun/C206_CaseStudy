@@ -25,7 +25,6 @@ public class OnlineAuctionShop {
 	private static ArrayList<Bid> bidList = new ArrayList<Bid>();
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		launch();
 	}
 
@@ -527,8 +526,6 @@ public class OnlineAuctionShop {
 	}
 
 	public static void viewAllAuctions(ArrayList<Auction> auctionList) {
-		// TODO Auto-generated method stub
-
 		System.out.println("All Auctions:");
 		for (Auction auction : auctionList) {
 			System.out.println("Auction ID: " + auction.getAuctionID());
