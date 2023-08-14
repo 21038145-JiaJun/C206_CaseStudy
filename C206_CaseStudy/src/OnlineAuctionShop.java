@@ -459,7 +459,7 @@ public class OnlineAuctionShop {
 			char confirmation = Helper.readChar("Confirm deletion of payment? (Y/N) > ");
 
 			if (confirmation == 'y' || confirmation == 'Y') {
-				removePayment(paymentID);
+				removePayment(paymentList, paymentID);
 			} else if (confirmation == 'n' || confirmation == 'N') {
 				System.out.println("Deleting cancelled");
 			} else {
@@ -470,9 +470,13 @@ public class OnlineAuctionShop {
 		}
 	}
 	
-	public static void removePayment(int paymentID) {
-		paymentList.remove(paymentID - 1);
-		System.out.println("Payment successfully deleted");
+	public static void removePayment(ArrayList<Payment> paymentList, int paymentID) {
+		for (int i = 0; i < paymentList.size(); i++) {
+			if (paymentList.get(i).getPaymentID() == paymentID) {
+				paymentList.remove(i);
+				System.out.println("Payment successfully deleted");
+			}
+		}
 	}
 
 	// ===== Option 1: [Auction] ([Wang tianqi])

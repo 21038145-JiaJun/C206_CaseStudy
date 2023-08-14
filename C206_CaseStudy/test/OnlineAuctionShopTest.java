@@ -270,15 +270,15 @@ public class OnlineAuctionShopTest {
 		//Add Payment to list for testing removePayment
 		paymentList.addAll(Arrays.asList(p1, p2));
 		//Test Payment List is 1 after deleting payment - normal
-		OnlineAuctionShop.removePayment(2);
+		OnlineAuctionShop.removePayment(paymentList, 2);
 		assertEquals("Test that Payment arraylist size is 1", 1, paymentList.size());
 		
 		//Test Payment List is still 1 after deleting payment with non-existent paymentID - error
-		OnlineAuctionShop.removePayment(2);
+		OnlineAuctionShop.removePayment(paymentList, 2);
 		assertEquals("Test that Payment arraylist size is 1", 1, paymentList.size());
 		
 		//Test Payment List is 0 after deleting only existing payment - boundary
-		OnlineAuctionShop.removePayment(1);
+		OnlineAuctionShop.removePayment(paymentList, 1);
 		assertEquals("Test that Payment arraylist size is 0", 0, paymentList.size());
 	}
 
