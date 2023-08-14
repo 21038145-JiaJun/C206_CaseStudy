@@ -137,7 +137,25 @@ public class OnlineAuctionShopTest {
 		
 	}
 
-
+	@Test
+	public void testDeleteUser() {
+		//Deleting an existing user - Normal
+		    userList.remove(u1);
+		    assertFalse("Test that userList should not contain u1 after deletion", userList.contains(u1));
+		
+		  //Deleted User still displays in userList(ViewAllUsers) - error
+	        assertFalse("Test that a deleted user e.g. u1 should not be in user list", userList.contains(u1));
+		
+	       //Deletion is done twice - boundary
+	        int newSize = userList.size(); //captures initialSize
+	        boolean userWasRemoved = userList.remove(u1); //returns true if user was found and removed , returns false if user is not found
+	        assertFalse("Test that  deleting the same user again should return false", userWasRemoved); //deleting the same user again should return false
+	        assertEquals("Test that deleting a user again should not affect userList size", newSize, userList.size()); //size of list remains unchanged, comparing the size of newSize and userList 
+	        
+	     //UserList is empty after deletion of all users - normal
+	        userList.clear();
+	        assertTrue("Test that userList should be empty after deleting all users" , userList.isEmpty());
+	    }
 
 	// ===== Test Option 3: Auction ([Wang tianqi]) =====
 	@Test
@@ -170,36 +188,6 @@ public class OnlineAuctionShopTest {
 		// Restore the original System.out
 		System.setOut(System.out);
 	}
-	
-
-	
-	
-	@Test
-	public void testDeleteUser() {
-		//Deleting an existing user - Normal
-		    userList.remove(u1);
-		    assertFalse("Test that userList should not contain u1 after deletion", userList.contains(u1));
-		
-		  //Deleted User still displays in userList(ViewAllUsers) - error
-	        assertFalse("Test that a deleted user e.g. u1 should not be in user list", userList.contains(u1));
-		
-	       //Deletion is done twice - boundary
-	        int newSize = userList.size(); //captures initialSize
-	        boolean userWasRemoved = userList.remove(u1); //returns true if user was found and removed , returns false if user is not found
-	        assertFalse("Test that  deleting the same user again should return false", userWasRemoved); //deleting the same user again should return false
-	        assertEquals("Test that deleting a user again should not affect userList size", newSize, userList.size()); //size of list remains unchanged, comparing the size of newSize and userList 
-	        
-	     //UserList is empty after deletion of all users - normal
-	        userList.clear();
-	        assertTrue("Test that userList should be empty after deleting all users" , userList.isEmpty());
-	    }
-	
-		
-	
-	
-
-
-
 
 	@Test
 	public void OnlineAuctionShop_testDeleteAuction() {
