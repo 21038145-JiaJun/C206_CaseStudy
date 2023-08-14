@@ -52,10 +52,6 @@ public class OnlineAuctionShopTest {
 		Item i1 = new Item("I1", "Item is an Item");
 		Payment p1 = new Payment(1, a1, i1);
 		
-		auctionList.add(a1);
-		itemList.add(i1);
-		paymentList.add(p1);
-		
 		u1 = new User("Jane" , 20791987 , "Jane55" ,  "jane55@gmail.com");
 		u2 = new User("James" , 29875673 , "James27" , "james201@hotmail.com");
 		u3 = new User("Carrie" , 56792928 , "Carr25ie" , "car32ie@yahoo.com");
