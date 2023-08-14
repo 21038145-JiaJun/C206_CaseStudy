@@ -43,7 +43,6 @@ public class OnlineAuctionShopTest {
 		super();
 	}
 
-
 	@Before
 	public void setUp() throws Exception {
 		//prepare test data
@@ -76,8 +75,10 @@ public class OnlineAuctionShopTest {
 		userList = new ArrayList<User>();
 		bidList = new ArrayList<Bid>();
 	}
+	
 	// ===== Test Option 1: User (Cedric) =====
 	@Test
+	
 	public void testaddUser() {
 		//Add a new User - normal
 	    int initialSize = userList.size();
@@ -111,7 +112,7 @@ public class OnlineAuctionShopTest {
 			 // View userList when userList is not null - normal 
 				      assertNotNull("Test that userList should not be null when it is not expected/initialized to be null", userList); 
 				  
-				  //View userList when userList is null -error 
+			 //View userList when userList is null -error 
 				      ArrayList<User> nullUserList = null; 
 				      assertNull("Test that viewing null user list should result in null", nullUserList); 
 				   
@@ -123,16 +124,16 @@ public class OnlineAuctionShopTest {
 		      userList.remove(u1); 
 		      assertFalse("Test that userList should not contain u1 after deletion", userList.contains(u1)); 
 		   
-		    //Deleted User still displays in userList(ViewAllUsers) - error 
+		   //Deleted User still displays in userList(ViewAllUsers) - error 
 		         assertFalse("Test that a deleted user e.g. u1 should not be in user list", userList.contains(u1)); 
 		   
-		        //Deletion is done twice - boundary 
+		   //Deletion is done twice - boundary 
 		         int newSize = userList.size(); //captures initialSize 
 		         boolean userWasRemoved = userList.remove(u1); //returns true if user was found and removed , returns false if user is not found 
 		         assertFalse("Test that  deleting the same user again should return false", userWasRemoved); //deleting the same user again should return false 
 		         assertEquals("Test that deleting a user again should not affect userList size", newSize, userList.size()); //size of list remains unchanged, comparing the size of newSize and userList  
 		          
-		      //UserList is empty after deletion of all users - normal 
+		    //UserList is empty after deletion of all users - normal 
 		         userList.clear(); 
 		         assertTrue("Test that userList should be empty after deleting all users" , userList.isEmpty()); 
 		     }
@@ -163,15 +164,10 @@ public class OnlineAuctionShopTest {
 		String expectedOutput = "All Auctions:\n" +"Auction ID: 1\n" +"Description: Description 1\n" + "Starting Bid: 100.5\n" + "\n" +"Auction ID: 2\n" +
 				"Description: Description 2\n" +"Starting Bid: 200.0\n" +"\n";
 
-
-
 		// Restore the original System.out
 		System.setOut(System.out);
 	}
 	
-
-
-
 	@Test
 	public void OnlineAuctionShop_testDeleteAuction() {
 		Auction auction1 = new Auction(1, "Description 1", 100.5);
@@ -189,14 +185,7 @@ public class OnlineAuctionShopTest {
 		// Check that only one auction remains in the list
 		assertEquals("Test that only one auction remains in the list", 1, auctionList.size());
 	}
-
-
-
-
-
 	// ===== Test Option 5: Payment (Ivan) =====
-
-
 	@Test
 	public void OnlineAuctionShop_testAddPayment() {
 		//Add necessary objects into auctionList and itemList for validation during check
@@ -223,7 +212,6 @@ public class OnlineAuctionShopTest {
 		assertEquals("Check that Payment arraylist size is 2", 2, paymentList.size());
 
 	}
-
 
 	@Test
 	public void OnlineAuctionShop_testViewAllPayment() {
@@ -253,7 +241,6 @@ public class OnlineAuctionShopTest {
 
 	}
 
-
 	@Test
 	public void OnlineAuctionShop_testDeletePayment() {
 
@@ -270,15 +257,9 @@ public class OnlineAuctionShopTest {
 		OnlineAuctionShop.removePayment(paymentList, 2);
 		assertEquals("Test that Payment arraylist size is 1", 1, paymentList.size());
 
-		
-
 		//Test Payment List is still 1 after deleting payment with non-existent paymentID - error
 		OnlineAuctionShop.removePayment(paymentList, 2);
 		assertEquals("Test that Payment arraylist size is 1", 1, paymentList.size());
-
-		
-
-		
 
 		//Test Payment List is 0 after deleting only existing payment - boundary
 		OnlineAuctionShop.removePayment(paymentList, 1);
@@ -286,16 +267,12 @@ public class OnlineAuctionShopTest {
 
 	}
 
-	
 	@Test
 	public void OnlineAuctionShop_testAddBid() {
-		
-		
 		
 		// Test if the new bid is empty
 		assertNotNull("Test if the bid arraylist to retrieve item", bidList);
 
-		
 		// Test if the array list has the the items added
 		bidList.add(b1);
 		bidList.add(b2);
@@ -378,9 +355,6 @@ public class OnlineAuctionShopTest {
 		}
 		assertTrue("Test that the bid is deleted", bidFound);
 
-
-
-
 		//Test that the array list for bid is not empty
 		assertNotNull("Test that the list is not empty",bidList);
 		
@@ -388,7 +362,6 @@ public class OnlineAuctionShopTest {
 		OnlineAuctionShop.deleteBid(bidList, b2.getBidID());
 		assertEquals("Test that a bid has been deleted", bidSize - 1, bidList.size());
 	}
-
 
 	@After
 	public void tearDown() throws Exception {

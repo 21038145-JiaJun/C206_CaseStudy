@@ -60,7 +60,7 @@ public class OnlineAuctionShop {
 			} else if (option == OPTION_PAYMENT) {
 				payment();
 			} else if (option == OPTION_QUIT) {
-
+				
 			} else {
 				System.out.println(ERROR_MSG_OPTION);
 			}
