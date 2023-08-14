@@ -102,9 +102,14 @@ public class OnlineAuctionShop {
 				// Delete an existing user
 				deleteUser(userList);
 			}
-		}
+			userMenu();
+            option = Helper.readInt("Enter an option >");
+        }
+		
 	}
-
+		
+    
+	
 
 	private static void userMenu() {
 		OnlineAuctionShop.setHeader("USER MENU");
@@ -113,15 +118,25 @@ public class OnlineAuctionShop {
 		System.out.println("3. Delete an existing user");
 		System.out.println("4. Exit");
 	}
-	
-	public static void addUser(ArrayList<User> UserList ) {
+
+	public static void addUser(ArrayList<User> userList ) {
 		    String name = Helper.readString("Enter the name: ");
 		    int id = Helper.readInt("Enter the id ");
 		    String password = Helper.readString("Enter the password: ");
 		    String email = Helper.readString("Enter the email: ");
+		    
+		    if(id < 0) {
+		    	System.out.println("Invalid Id.");
+		    	return;
+		    }
 
 		    for (User user : userList) {
 		        if (user.getName().equalsIgnoreCase(name)) {
+		            return;
+		        }
+		        
+		      if (userList.size() >= 200) {
+		            System.out.println("Maximum number of users exceeded.");
 		            return;
 		        }
 		    }
@@ -132,10 +147,13 @@ public class OnlineAuctionShop {
 		}
 
 
-	
 
-	
-	public static void viewAllUsers(ArrayList<User> UserList) {
+	public static void viewAllUsers(ArrayList<User> userList) {
+		  if (userList.isEmpty()) {
+	            System.out.println("No users found.");
+	            return;
+	        }
+		  
 			String output = String.format("%-12s %-15s %-25s %-10s\n", "Name", "Id", "Password", "Email");
 			
 			for (User user : userList) {
@@ -146,21 +164,27 @@ public class OnlineAuctionShop {
 			System.out.println(output);
 		}
 	
-	public static void deleteUser(ArrayList<User> UserList ) {
+	
+
+	public static void deleteUser(ArrayList<User> userList ) {
+	    if (userList.isEmpty()) {
+            System.out.println("No users to delete.");
+            return;
+        }
 		    String name = Helper.readString("Enter the name of the user to delete: ");
-		    boolean found = false;
+		    boolean isDeleted = false;
 
 		    for (int i = 0; i < userList.size(); i++) {
 		        User user = userList.get(i);
 		        if (user.getName().equalsIgnoreCase(name)) {
 		            userList.remove(i);
 		            System.out.println("User " + name + " has been deleted.");
-		            found = true;
+		            isDeleted = true;
 		            break;
 		        }
 		    }
 
-		    if (!found) {
+		    if (!isDeleted) {
 		        System.out.println("User " + name + " not found.");
 		    }
 		}
