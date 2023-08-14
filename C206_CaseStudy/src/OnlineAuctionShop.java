@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 public class OnlineAuctionShop {
@@ -25,22 +26,21 @@ public class OnlineAuctionShop {
 	private static ArrayList<Bid> bidList = new ArrayList<Bid>();
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		launch();
 	}
 
 	private static void launch() {
 
-//		Auction a1 = new Auction(1, "A beautiful description", 100.50);
-//		Auction a2 = new Auction(2, "A disgusting description", 201);
-//		Item i1 = new Item("I1", "Pencil");
-//		Item i2 = new Item("J2", "Backpack");
-//		Bid b1 = new Bid(1000, "Gavel", 50.40);
-//		Bid b2 = new Bid(1001, "Brush", 23.10);
-//
-//		auctionList.addAll(Arrays.asList(a1, a2));
-//		itemList.addAll(Arrays.asList(i1, i2));
-//		bidList.addAll(Arrays.asList(b1, b2));
+		Auction a1 = new Auction(1, "A beautiful description", 100.50);
+		Auction a2 = new Auction(2, "A disgusting description", 201);
+		Item i1 = new Item("I1", "Pencil");
+		Item i2 = new Item("J2", "Backpack");
+		Bid b1 = new Bid(1000, "Gavel", 50.40);
+		Bid b2 = new Bid(1001, "Brush", 23.10);
+
+		auctionList.addAll(Arrays.asList(a1, a2));
+		itemList.addAll(Arrays.asList(i1, i2));
+		bidList.addAll(Arrays.asList(b1, b2));
 
 		int option = OPTION_DEFAULT;
 
@@ -54,7 +54,7 @@ public class OnlineAuctionShop {
 			} else if (option == OPTION_AUCTION) {
 				auction();
 			} else if (option == OPTION_ITEM) {
-
+				items();
 			} else if (option == OPTION_BID) {
 				bid();
 			} else if (option == OPTION_PAYMENT) {
@@ -527,8 +527,6 @@ public class OnlineAuctionShop {
 	}
 
 	public static void viewAllAuctions(ArrayList<Auction> auctionList) {
-		// TODO Auto-generated method stub
-
 		System.out.println("All Auctions:");
 		for (Auction auction : auctionList) {
 			System.out.println("Auction ID: " + auction.getAuctionID());
@@ -549,4 +547,134 @@ public class OnlineAuctionShop {
 		System.out.println("Auction added successfully");
 	}
 
+
+
+// Option 3: Maintain Items (Le Young)
+	
+public static void ItemMenu() {
+	OnlineAuctionShop.setHeader("ITEM MENU");
+	System.out.println("1. Add Item");
+	System.out.println("2. View All Items");
+	System.out.println("3. Delete an Existing Item");
+	System.out.println("4. Exit");
 }
+
+public static void items() {
+	int option = OPTION_ITEM;
+
+	while (option != EXIT) {
+
+		ItemMenu();
+		option = Helper.readInt("Enter an option > ");
+
+		if (option == ADD) {
+			// Add Item
+			Item item = inputAddItem(itemList);
+			addItem(itemList, item);
+		} else if (option == VIEW_ALL) {
+			// View All 
+			viewAllItems(itemList);
+		} else if (option == DELETE) {
+			// Delete 
+			deleteItem(itemList);
+		} else {
+			System.out.println(ERROR_MSG_OPTION);
+		}
+	}
+}
+
+// Add item (Option 3.1, Le Young)
+
+public static Item inputAddItem(ArrayList<Item> itemList) {
+
+
+	Item item = null;
+	
+	String assetTag = Helper.readString("Enter Item ID > ");
+	String description = Helper.readString("Enter Description > ");
+	
+
+
+	for (Item i : itemList) {
+		if (assetTag.equals(i.getAssetTag())) {
+			item = i;
+			break;
+		}
+	}
+
+	item = new Item(assetTag, description);
+	return item;
+
+}
+
+public static void addItem(ArrayList<Item> itemList, Item item) {
+
+	itemList.add(item);
+	System.out.println("Item added successfully");
+
+}
+
+
+// ================================= Option 3.2: View All Items (LY)
+// =================================
+public static String retrieveAllItem(ArrayList<Item> itemList) {
+	String output = "";
+
+	for (Item item : itemList) {
+		output += String.format("%-12s %-12s\n", item.getAssetTag(), item.getDescription());
+	}
+	return output;
+}
+
+public static void viewAllItems(ArrayList<Item> itemList) {
+
+	String output = String.format("%-12s %-12s\n", "Item ID", "Description");
+	String output1 = retrieveAllItem(itemList);
+
+	setHeader("LIST OF ITEMS");
+	System.out.println(output += output1);
+}
+
+
+// ================================= Option 3: Delete Item (LY)
+// =================================
+
+public static void deleteItem(ArrayList<Item> itemList) {
+	viewAllItems(itemList);
+	String assetTag = Helper.readString("Enter Item ID to be deleted > ");
+	boolean itemExist = false;
+
+	for (Item i : itemList) {
+		if (i.getAssetTag().equals(i.getAssetTag())) {
+			itemExist = true;
+			break;
+		}
+	}
+
+	if (itemExist == true) {
+		char confirmation = Helper.readChar("Confirm deletion of item? (Y/N) > ");
+
+		if (confirmation == 'y' || confirmation == 'Y') {
+			removeItem(itemList, assetTag);
+		} else if (confirmation == 'n' || confirmation == 'N') {
+			System.out.println("Deleting cancelled");
+		} else {
+			System.out.println(ERROR_MSG_OPTION);
+		}
+	}
+}
+
+
+	public static void removeItem(ArrayList<Item> itemList, String assetTag) { 
+		  for (int i = 0; i < itemList.size(); i++) { 
+		   if (itemList.get(i).getAssetTag().equals(assetTag)) { 
+			   itemList.remove(i); 
+		    System.out.println("Item successfully deleted"); 
+		   } 
+		  } 
+		 }
+
+}
+
+
+
