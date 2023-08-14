@@ -283,10 +283,10 @@ public class OnlineAuctionShop {
 		boolean bidExist = false;
 		int bidIndex = 0;
 
-		int inputBid = retrieveBidID();
+		bidID = retrieveBidID();
 
 		for (int i = 0; i < bidList.size(); i++) {
-			if (inputBid == bidList.get(i).getBidID()) {
+			if (bidID == bidList.get(i).getBidID()) {
 				bidExist = true;
 				bidIndex = i;
 				break;
@@ -294,7 +294,7 @@ public class OnlineAuctionShop {
 		}
 
 		if (bidExist == true) {
-			char confirmation = Helper.readChar("Confirm deletion of payment? (Y/N) > ");
+			char confirmation = Helper.readChar("Confirm deletion of bid? (Y/N) > ");
 
 			if (confirmation == 'y' || confirmation == 'Y') {
 				bidList.remove(bidIndex);

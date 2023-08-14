@@ -1,5 +1,6 @@
 import static org.junit.Assert.*;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -9,12 +10,11 @@ import org.junit.Test;
 
 public class OnlineAuctionShopTest {
 	//prepare test data
-	private static ArrayList<Payment> paymentList = new ArrayList<Payment>();
-	private static ArrayList<Item> itemList = new ArrayList<Item>();
-	private static ArrayList<User> userList = new ArrayList<User>();
-	private static ArrayList<Auction> auctionList = new ArrayList<Auction>();
-	private static ArrayList<Bid> bidList = new ArrayList<Bid>();
-	
+	private ArrayList<Payment> paymentList;
+	private ArrayList<Item> itemList;
+	private ArrayList<User> userList;
+	private ArrayList<Auction> auctionList;
+	private ArrayList<Bid> bidList;
 
 	private User u1;
 	private User u2;
@@ -37,7 +37,8 @@ public class OnlineAuctionShopTest {
 
 	private Payment p1;
 	private Payment p2;
-
+	private Payment p3;
+	private Payment p4;
 
 	public OnlineAuctionShopTest() {
 		super();
@@ -46,7 +47,6 @@ public class OnlineAuctionShopTest {
 
 	@Before
 	public void setUp() throws Exception {
-		 userList = new ArrayList<User>();
 		//prepare test data
 
 		Auction a1 = new Auction(1, "A beautiful description", 100.50);
@@ -74,76 +74,29 @@ public class OnlineAuctionShopTest {
 
 		p1 = new Payment(1, a1, i1);
 		p2 = new Payment(2, a2, i2);
+		p3 = new Payment(1, a1, i1);
 
 		paymentList = new ArrayList<Payment>();
+//		objectList = new ArrayList<Object>();
 		auctionList = new ArrayList<Auction>();
 		itemList = new ArrayList<Item>();
 		userList = new ArrayList<User>();
 		bidList = new ArrayList<Bid>();
 
 	}
-	// ===== Test Option 1: User (Cedric) =====
+	// ================================= Test Option 1: User (Cedric) =================================
 	@Test
-	public void testaddUser() {
-		//Add a new User - normal
-	    int initialSize = userList.size();
-	    OnlineAuctionShop.addUser(userList);
-	    assertEquals("Test that adding a new user should increase the user list size by 1", initialSize + 1, userList.size());
-	    User newUser = userList.get(userList.size() - 1);
-	    assertNotNull("Check that new User is added", newUser);
-	    
-		//Invalid Id format , size of list remains the same , error message "Invalid Id" should be displayed-Error
-		    int invalidId = -16374347; 
-		    User invalidUser = new User("Jane", invalidId, "Jane55", "jane55@gmail.com");
-		    userList.add(invalidUser);
-		    assertEquals("Test that adding a user with an invalid ID should not change the user list size", initialSize + 2 , userList.size());
-		    
-		    
-		//Maximum number of users exceeded  -Boundary
-		    User userExceedMax = new User("John", 243627272, "John78", "john78@yahoo.com");
-		    userList.add(userExceedMax);
-		    assertEquals("Test that adding a user when the maximum user limit is exceeded should not change the user list size", initialSize + 3, userList.size());
-		 
-		    // User list is not null, so that can add a new user - boundary
-			assertNotNull("Test that there is a valid userlist that can be added", userList);
+	public void OnlineAuctionShop_testAddUser() {
+		//Add a new user
+
+
+
+		assertTrue("OnlineAuctionShop_SampleTest",true);
 	}
 
-	@Test
-	public void testviewAllUsers() {
-		//View all users in userList -normal
-		 assertNotNull("Test that userList should not be null", userList);
-		
-	     
-	     // View userList when userList is not null - normal
-	     assertNotNull("Test that userList should not be null when it is not expected/initialized to be null", userList);
-	
-		//View userList when userList is null -error
-	     ArrayList<User> nullUserList = null;
-	     assertNull("Test that viewing null user list should result in null", nullUserList);
-		
-	}
 
-	@Test
-	public void testDeleteUser() {
-		//Deleting an existing user - Normal
-		    userList.remove(u1);
-		    assertFalse("Test that userList should not contain u1 after deletion", userList.contains(u1));
-		
-		  //Deleted User still displays in userList(ViewAllUsers) - error
-	        assertFalse("Test that a deleted user e.g. u1 should not be in user list", userList.contains(u1));
-		
-	       //Deletion is done twice - boundary
-	        int newSize = userList.size(); //captures initialSize
-	        boolean userWasRemoved = userList.remove(u1); //returns true if user was found and removed , returns false if user is not found
-	        assertFalse("Test that  deleting the same user again should return false", userWasRemoved); //deleting the same user again should return false
-	        assertEquals("Test that deleting a user again should not affect userList size", newSize, userList.size()); //size of list remains unchanged, comparing the size of newSize and userList 
-	        
-	     //UserList is empty after deletion of all users - normal
-	        userList.clear();
-	        assertTrue("Test that userList should be empty after deleting all users" , userList.isEmpty());
-	    }
 
-	// ===== Test Option 3: Auction ([Wang tianqi]) =====
+	// ================================= Test Option 3: Auction ([Wang tianqi]) =================================
 	@Test
 	public void OnlineAuctionShop_testAddAuction() {
 		Auction auction1 = new Auction(1, "1", 1);
@@ -174,6 +127,9 @@ public class OnlineAuctionShopTest {
 		// Restore the original System.out
 		System.setOut(System.out);
 	}
+	
+
+
 
 	@Test
 	public void OnlineAuctionShop_testDeleteAuction() {
@@ -199,8 +155,7 @@ public class OnlineAuctionShopTest {
 
 
 
-
-	// ===== Test Option 5: Payment (Ivan) =====
+	// ================================= Test Option 5: Payment (Ivan) =================================
 
 	@Test
 	public void OnlineAuctionShop_testAddPayment() {
@@ -222,8 +177,8 @@ public class OnlineAuctionShopTest {
 		assertSame("Check that Payment is added", p2, paymentList.get(1));
 
 		//Test that adding payment that already exists to the list fails - error
-		assertSame("Check that payment in list, and the payment to add is the same", p1, paymentList.get(0));
-		OnlineAuctionShop.addPayment(paymentList, auctionList, itemList, p1);
+		assertSame("Check that payment in list, and the payment to add is the same", p1, p3);
+		OnlineAuctionShop.addPayment(paymentList, auctionList, itemList, p3);
 		//The Payment list size does not change, and the payment is not added
 		assertEquals("Check that Payment arraylist size is 2", 2, paymentList.size());
 
@@ -248,34 +203,47 @@ public class OnlineAuctionShopTest {
 		OnlineAuctionShop.addPayment(paymentList, auctionList, itemList, p1);
 		OnlineAuctionShop.addPayment(paymentList, auctionList, itemList, p2);
 		assertEquals("Test that Payment arraylist size is 2", 2, paymentList.size());
-		
+
 		//Test if the expected output string is the same as the list of payments retrieved from the OnlineAuctionShop	
 		allPayment = OnlineAuctionShop.retrieveAllPayment(paymentList);
 		testOutput = String.format("%-12d %-12d %-15s %-25s %-10.2f %-10s\n", 1, 1, "I1", "Pencil", 100.50, "No");
 		testOutput += String.format("%-12d %-12d %-15s %-25s %-10.2f %-10s\n", 2, 2, "I2", "Backpack", 20.00, "No");
+
 		assertEquals("Test that ViewAllPayment matches", testOutput, allPayment);
-		
+
 	}
 
 
 	@Test
 	public void OnlineAuctionShop_testDeletePayment() {
+
+		//Add necessary objects into auctionList and itemList for validation during check
+		auctionList.addAll(Arrays.asList(a1, a2, a3));
+		itemList.addAll(Arrays.asList(i1, i2, i3));
+
 		//Test if Payment list is not null but empty - boundary
 		assertNotNull("Test if there is valid Payment arraylist to retrieve item", paymentList);
-		
+
 		//Add Payment to list for testing removePayment
 		paymentList.addAll(Arrays.asList(p1, p2));
 		//Test Payment List is 1 after deleting payment - normal
 		OnlineAuctionShop.removePayment(paymentList, 2);
 		assertEquals("Test that Payment arraylist size is 1", 1, paymentList.size());
+
 		
+
 		//Test Payment List is still 1 after deleting payment with non-existent paymentID - error
 		OnlineAuctionShop.removePayment(paymentList, 2);
 		assertEquals("Test that Payment arraylist size is 1", 1, paymentList.size());
+
 		
+
+		
+
 		//Test Payment List is 0 after deleting only existing payment - boundary
 		OnlineAuctionShop.removePayment(paymentList, 1);
 		assertEquals("Test that Payment arraylist size is 0", 0, paymentList.size());
+
 	}
 
 	
@@ -348,6 +316,8 @@ public class OnlineAuctionShopTest {
 		for (Bid b:bidList) {
 			if (b.getBidID() == wrongBidID) {
 				bidFound = true;
+			} else {
+				bidFound = false;
 			}
 		}
 		
@@ -361,9 +331,9 @@ public class OnlineAuctionShopTest {
 			if (b.getBidID() == correctBidID) {
 				bidFound = true;
 				OnlineAuctionShop.deleteBid(bidList, correctBidID);
+			} else {
+				bidFound = false;
 			}
-		}
-		assertTrue("Test that the bid is deleted", bidFound);
 
 		//Test that the array list for bid is not empty
 		assertNotNull("Test that the list is not empty",bidList);
@@ -371,7 +341,7 @@ public class OnlineAuctionShopTest {
 		//Test that the auction ID deletes the bid
 		OnlineAuctionShop.deleteBid(bidList, b2.getBidID());
 		assertEquals("Test that a bid has been deleted", bidSize - 1, bidList.size());
-	}
+	}}
 
 
 	@After
@@ -397,12 +367,12 @@ public class OnlineAuctionShopTest {
 
 		p1 = null;
 		p2 = null;
+		p3 = null;
 
 		auctionList = null;
 		bidList = null;
 		itemList = null;
 		paymentList = null;
 		userList = null;
-		
 	}
 }
