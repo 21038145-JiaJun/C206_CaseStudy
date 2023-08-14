@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class OnlineAuctionShopTest {
-	//prepare test data
 	private static ArrayList<Payment> paymentList = new ArrayList<Payment>();
 	private static ArrayList<Item> itemList = new ArrayList<Item>();
 	private static ArrayList<User> userList = new ArrayList<User>();
