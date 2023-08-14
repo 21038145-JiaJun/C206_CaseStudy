@@ -107,13 +107,6 @@ public class OnlineAuctionShopTest {
 	
 	// ===== Test Option 1: User (Cedric) =====
 	@Test
-	public void OnlineAuctionShop_testAddUser() {
-		//Add a new user
-
-
-
-		assertTrue("OnlineAuctionShop_SampleTest",true);
-	}
 
 
 
