@@ -3,7 +3,8 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 public class OnlineAuctionShop {
-
+	private static final int MAX_USERS = 200;
+	private static final String TITLE_HEADER = "%-12s %-15s %-25s %-10s\n";
 	private static final int OPTION_DEFAULT = -99;
 	private static final int OPTION_QUIT = 6;
 	private static final int OPTION_USER = 1;
@@ -122,41 +123,54 @@ public class OnlineAuctionShop {
 		System.out.println("3. Delete an existing user");
 		System.out.println("4. Exit");
 	}
-
+	
+	private static boolean isValidId(int id) { //validate id
+	    return id >= 0;
+	}
 
 	public static void addUser(ArrayList<User> userList ) {
 		    String name = Helper.readString("Enter the name: ");
 		    int id = Helper.readInt("Enter the id ");
-		    String password = Helper.readString("Enter the password: ");
-		    String email = Helper.readString("Enter the email: ");
 		    
-		    if(id < 0) {
-		    	System.out.println("Invalid Id.");
-		    	return;
+		    if (!isValidId(id)) {
+		        System.out.println("Invalid Id.");
+		        return;
 		    }
-
-		    for (User user : userList) {
-		        if (user.getName().equalsIgnoreCase(name)) {
-		            return;
-		        }
-		        
-		      if (userList.size() >= 200) {
+		    
+		    if (isUserAlreadyExists(userList, name)) {
+		        return;
+		    }
+		    
+		        if (userList.size() >= MAX_USERS) {
 		            System.out.println("Maximum number of users exceeded.");
 		            return;
 		        }
-		    }
+		    
+		    String password = Helper.readString("Enter the password: ");
+		    String email = Helper.readString("Enter the email: ");
+		    
 		    
 		    User newUser = new User(name, id , password, email);
 		    userList.add(newUser);
 		    System.out.println("User added successfully.");
 		}
 
+		private static boolean isUserAlreadyExists(ArrayList<User> userList, String name) {
+		for (User user : userList) {
+			if (user.getName().equalsIgnoreCase(name)) {
+				return true;
+    }
+    
+		}
+		
+	return false;
+		}
 
 	public static void viewAllUsers(ArrayList<User> UserList) {
-		String output = String.format("%-12s %-15s %-25s %-10s\n", "Name", "Id", "Password", "Email");
+		String output = String.format(TITLE_HEADER, "Name", "Id", "Password", "Email");
 
 		for (User user : userList) {
-			output += String.format("%-12s %-15d %-25s %-10s\n", user.getName(), user.getId(), user.getPw(),
+			output += String.format(TITLE_HEADER, user.getName(), user.getId(), user.getPw(),
 					user.getEmail());
 
 		}
@@ -171,22 +185,23 @@ public class OnlineAuctionShop {
             return;
         }
 		    String name = Helper.readString("Enter the name of the user to delete: ");
-		    boolean isDeleted = false;
-
+		    boolean isDeleted = deleteUserByName(userList, name);
+		    
+		    if (!isDeleted) {
+		        System.out.println("User " + name + " not found.");
+		    }
+	}
+		    private static boolean deleteUserByName(ArrayList<User> userList, String name) {
 		    for (int i = 0; i < userList.size(); i++) {
 		        User user = userList.get(i);
 		        if (user.getName().equalsIgnoreCase(name)) {
 		            userList.remove(i);
 		            System.out.println("User " + name + " has been deleted.");
-		            isDeleted = true;
-		            break;
+		            return true;
 		        }
 		    }
-
-		    if (!isDeleted) {
-		        System.out.println("User " + name + " not found.");
+		    	return false;
 		    }
-		}
 
 	// ===== Option 4: Bids (Jia Jun)
 	// =====
