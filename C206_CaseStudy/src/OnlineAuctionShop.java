@@ -165,7 +165,6 @@ public class OnlineAuctionShop {
 		System.out.println(output);
 	}
 
-
 	public static void deleteUser(ArrayList<User> userList ) {
 	    if (userList.isEmpty()) {
             System.out.println("No users to delete.");
