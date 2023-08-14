@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
-public class OnlineAuctionShop {
+public class OnlineAuctionShop2 {
 
 	private static final int OPTION_DEFAULT = -99;
 	private static final int OPTION_QUIT = 6;
@@ -71,7 +71,7 @@ public class OnlineAuctionShop {
 
 	// Display the main menu options
 	private static void mainMenu() {
-		OnlineAuctionShop.setHeader("CAMPUS ONLINE AUCTION SHOP (COAS)");
+		OnlineAuctionShop2.setHeader("CAMPUS ONLINE AUCTION SHOP (COAS)");
 		System.out.println("1. Maintain Users");
 		System.out.println("2. Maintain Auctions");
 		System.out.println("3. Maintain Items");
@@ -87,8 +87,8 @@ public class OnlineAuctionShop {
 		Helper.line(120, "-");
 	}
 
-	// ===== Option 1: Users (Cedric)
-	// =====
+	// ================================= Option 1: Users (Cedric)
+	// =================================
 	private static void user() {
 		int option = OPTION_DEFAULT;
 		userMenu();
@@ -104,54 +104,20 @@ public class OnlineAuctionShop {
 				// Delete an existing user
 				deleteUser(userList);
 			}
-			userMenu();
-            option = Helper.readInt("Enter an option >");
-        }
-		
+		}
 	}
 
-		
-    
-	
-
-
-
 	private static void userMenu() {
-		OnlineAuctionShop.setHeader("USER MENU");
+		OnlineAuctionShop2.setHeader("USER MENU");
 		System.out.println("1. Add a new user");
 		System.out.println("2. View All Users");
 		System.out.println("3. Delete an existing user");
 		System.out.println("4. Exit");
 	}
 
+	public static void addUser(ArrayList<User> UserList) {
 
-	public static void addUser(ArrayList<User> userList ) {
-		    String name = Helper.readString("Enter the name: ");
-		    int id = Helper.readInt("Enter the id ");
-		    String password = Helper.readString("Enter the password: ");
-		    String email = Helper.readString("Enter the email: ");
-		    
-		    if(id < 0) {
-		    	System.out.println("Invalid Id.");
-		    	return;
-		    }
-
-		    for (User user : userList) {
-		        if (user.getName().equalsIgnoreCase(name)) {
-		            return;
-		        }
-		        
-		      if (userList.size() >= 200) {
-		            System.out.println("Maximum number of users exceeded.");
-		            return;
-		        }
-		    }
-		    
-		    User newUser = new User(name, id , password, email);
-		    userList.add(newUser);
-		    System.out.println("User added successfully.");
-		}
-
+	}
 
 	public static void viewAllUsers(ArrayList<User> UserList) {
 		String output = String.format("%-12s %-15s %-25s %-10s\n", "Name", "Id", "Password", "Email");
@@ -159,43 +125,20 @@ public class OnlineAuctionShop {
 		for (User user : userList) {
 			output += String.format("%-12d %-15d %-25s %-10s\n", user.getName(), user.getId(), user.getPw(),
 					user.getEmail());
-
 		}
-
 		Helper.line(80, "=");
 		System.out.println(output);
 	}
 
+	public static void deleteUser(ArrayList<User> UserList) {
 
+	}
 
-	public static void deleteUser(ArrayList<User> userList ) {
-	    if (userList.isEmpty()) {
-            System.out.println("No users to delete.");
-            return;
-        }
-		    String name = Helper.readString("Enter the name of the user to delete: ");
-		    boolean isDeleted = false;
-
-		    for (int i = 0; i < userList.size(); i++) {
-		        User user = userList.get(i);
-		        if (user.getName().equalsIgnoreCase(name)) {
-		            userList.remove(i);
-		            System.out.println("User " + name + " has been deleted.");
-		            isDeleted = true;
-		            break;
-		        }
-		    }
-
-		    if (!isDeleted) {
-		        System.out.println("User " + name + " not found.");
-		    }
-		}
-
-	// ===== Option 4: Bids (Jia Jun)
-	// =====
+	// ================================= Option 4: Bids (Jia Jun)
+	// =================================
 
 	public static void bidMenu() {
-		OnlineAuctionShop.setHeader("BID MENU");
+		OnlineAuctionShop2.setHeader("BID MENU");
 		System.out.println("1. Add a New Bid");
 		System.out.println("2. View All Bids");
 		System.out.println("3. Delete an Existing Bid");
@@ -283,10 +226,10 @@ public class OnlineAuctionShop {
 		boolean bidExist = false;
 		int bidIndex = 0;
 
-		bidID = retrieveBidID();
+		int inputBid = retrieveBidID();
 
 		for (int i = 0; i < bidList.size(); i++) {
-			if (bidID == bidList.get(i).getBidID()) {
+			if (inputBid == bidList.get(i).getBidID()) {
 				bidExist = true;
 				bidIndex = i;
 				break;
@@ -294,7 +237,7 @@ public class OnlineAuctionShop {
 		}
 
 		if (bidExist == true) {
-			char confirmation = Helper.readChar("Confirm deletion of bid? (Y/N) > ");
+			char confirmation = Helper.readChar("Confirm deletion of payment? (Y/N) > ");
 
 			if (confirmation == 'y' || confirmation == 'Y') {
 				bidList.remove(bidIndex);
@@ -315,11 +258,11 @@ public class OnlineAuctionShop {
 
 	}
 
-	// ===== Option 5: Payment (Ivan)
-	// =====
+	// ================================= Option 5: Payment (Ivan)
+	// =================================
 
 	public static void paymentMenu() {
-		OnlineAuctionShop.setHeader("PAYMENT MENU");
+		OnlineAuctionShop2.setHeader("PAYMENT MENU");
 		System.out.println("1. Add Payment");
 		System.out.println("2. View All Payment");
 		System.out.println("3. Delete an Existing Payment");
@@ -350,8 +293,8 @@ public class OnlineAuctionShop {
 		}
 	}
 
-	// ===== Option 1: Add/Make Payment (Ivan)
-	// =====
+	// ================================= Option 1: Add/Make Payment (Ivan)
+	// =================================
 	public static Payment inputAddPayment(ArrayList<Auction> auctionList, ArrayList<Item> itemList) {
 
 		Auction auction = null;
@@ -417,8 +360,8 @@ public class OnlineAuctionShop {
 
 	}
 
-	// ===== Option 2: View All Payments (Ivan)
-	// =====
+	// ================================= Option 2: View All Payments (Ivan)
+	// =================================
 	public static String retrieveAllPayment(ArrayList<Payment> paymentList) {
 		String output = "";
 
@@ -440,8 +383,8 @@ public class OnlineAuctionShop {
 		System.out.println(output += output1);
 	}
 
-	// ===== Option 3: Delete Payments (Ivan)
-	// =====
+	// ================================= Option 3: Delete Payments (Ivan)
+	// =================================
 	
 	public static void deletePayment(ArrayList<Payment> paymentList) {
 		viewAllPayment(paymentList);
@@ -459,7 +402,7 @@ public class OnlineAuctionShop {
 			char confirmation = Helper.readChar("Confirm deletion of payment? (Y/N) > ");
 
 			if (confirmation == 'y' || confirmation == 'Y') {
-				removePayment(paymentList, paymentID);
+				removePayment(paymentID);
 			} else if (confirmation == 'n' || confirmation == 'N') {
 				System.out.println("Deleting cancelled");
 			} else {
@@ -470,20 +413,16 @@ public class OnlineAuctionShop {
 		}
 	}
 	
-	public static void removePayment(ArrayList<Payment> paymentList, int paymentID) {
-		for (int i = 0; i < paymentList.size(); i++) {
-			if (paymentList.get(i).getPaymentID() == paymentID) {
-				paymentList.remove(i);
-				System.out.println("Payment successfully deleted");
-			}
-		}
+	public static void removePayment(int paymentID) {
+		paymentList.remove(paymentID - 1);
+		System.out.println("Payment successfully deleted");
 	}
 
-	// ===== Option 1: [Auction] ([Wang tianqi])
-	// =====
+	// ================================= Option 1: [Auction] ([Wang tianqi])
+	// =================================
 
 	public static void auctionMenu() {
-		OnlineAuctionShop.setHeader("AUCTION MENU");
+		OnlineAuctionShop2.setHeader("AUCTION MENU");
 		System.out.println("1. Add a New Auction");
 		System.out.println("2. View All Auction");
 		System.out.println("3. Delete an Existing Auction");

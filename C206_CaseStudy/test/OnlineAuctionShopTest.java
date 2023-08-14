@@ -48,6 +48,11 @@ public class OnlineAuctionShopTest {
 	@Before
 	public void setUp() throws Exception {
 		//prepare test data
+
+		Auction a1 = new Auction(1, "A beautiful description", 100.50);
+		Item i1 = new Item("I1", "Item is an Item");
+		Payment p1 = new Payment(1, a1, i1);
+		
 		u1 = new User("Jane" , 20791987 , "Jane55" ,  "jane55@gmail.com");
 		u2 = new User("James" , 29875673 , "James27" , "james201@hotmail.com");
 		u3 = new User("Carrie" , 56792928 , "Carr25ie" , "car32ie@yahoo.com");
@@ -211,18 +216,34 @@ public class OnlineAuctionShopTest {
 
 	@Test
 	public void OnlineAuctionShop_testDeletePayment() {
-<<<<<<< HEAD
+
 		//Add necessary objects into auctionList and itemList for validation during check
 		auctionList.addAll(Arrays.asList(a1, a2, a3));
 		itemList.addAll(Arrays.asList(i1, i2, i3));
-=======
+
 		//Test if Payment list is not null but empty - boundary
 		assertNotNull("Test if there is valid Payment arraylist to retrieve item", paymentList);
->>>>>>> branch 'master' of https://github.com/21038145-JiaJun/C206_CaseStudy.git
+
+		//Add Payment to list for testing removePayment
+		paymentList.addAll(Arrays.asList(p1, p2));
+		//Test Payment List is 1 after deleting payment - normal
+		OnlineAuctionShop.removePayment(paymentList, 2);
+		assertEquals("Test that Payment arraylist size is 1", 1, paymentList.size());
+
 		
+
+		//Test Payment List is still 1 after deleting payment with non-existent paymentID - error
+		OnlineAuctionShop.removePayment(paymentList, 2);
+		assertEquals("Test that Payment arraylist size is 1", 1, paymentList.size());
+
 		
+
 		
-		
+
+		//Test Payment List is 0 after deleting only existing payment - boundary
+		OnlineAuctionShop.removePayment(paymentList, 1);
+		assertEquals("Test that Payment arraylist size is 0", 0, paymentList.size());
+
 	}
 
 	
@@ -295,6 +316,8 @@ public class OnlineAuctionShopTest {
 		for (Bid b:bidList) {
 			if (b.getBidID() == wrongBidID) {
 				bidFound = true;
+			} else {
+				bidFound = false;
 			}
 		}
 		
@@ -308,9 +331,9 @@ public class OnlineAuctionShopTest {
 			if (b.getBidID() == correctBidID) {
 				bidFound = true;
 				OnlineAuctionShop.deleteBid(bidList, correctBidID);
+			} else {
+				bidFound = false;
 			}
-		
-		assertTrue("Test that the bid is deleted", bidFound);
 
 		//Test that the array list for bid is not empty
 		assertNotNull("Test that the list is not empty",bidList);
@@ -318,7 +341,7 @@ public class OnlineAuctionShopTest {
 		//Test that the auction ID deletes the bid
 		OnlineAuctionShop.deleteBid(bidList, b2.getBidID());
 		assertEquals("Test that a bid has been deleted", bidSize - 1, bidList.size());
-	}
+	}}
 
 
 	@After
