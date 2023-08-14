@@ -91,12 +91,12 @@ public class OnlineAuctionShopTest {
 		    int invalidId = -16374347; 
 		    User invalidUser = new User("Jane", invalidId, "Jane55", "jane55@gmail.com");
 		    userList.add(invalidUser);
-		    assertEquals("Test that adding a user with an invalid ID should not change the user list size", initialSize + 2 , userList.size());
+		    assertEquals("Test that adding a user with an invalid ID should not change the user list size", initialSize + 1 , userList.size());
 		
 		    //Maximum number of users exceeded  -Boundary
 		    User userExceedMax = new User("John", 243627272, "John78", "john78@yahoo.com");
 		    userList.add(userExceedMax);
-		    assertEquals("Test that adding a user when the maximum user limit is exceeded should not change the user list size", initialSize + 3, userList.size());
+		    assertEquals("Test that adding a user when the maximum user limit is exceeded should not change the user list size", initialSize + 1, userList.size());
 		 
 		    // User list is not null, so that can add a new user - boundary
 			assertNotNull("Test that there is a valid userlist that can be added", userList);
