@@ -104,12 +104,6 @@ public class OnlineAuctionShopTest {
 
 
 
-	
-	// ===== Test Option 1: User (Cedric) =====
-	@Test
-
-
-
 	// ===== Test Option 3: Auction ([Wang tianqi]) =====
 	@Test
 	public void OnlineAuctionShop_testAddAuction() {
