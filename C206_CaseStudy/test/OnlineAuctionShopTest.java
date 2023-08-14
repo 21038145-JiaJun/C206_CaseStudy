@@ -48,10 +48,6 @@ public class OnlineAuctionShopTest {
 	@Before
 	public void setUp() throws Exception {
 		//prepare test data
-
-		Auction a1 = new Auction(1, "A beautiful description", 100.50);
-		Item i1 = new Item("I1", "Item is an Item");
-		Payment p1 = new Payment(1, a1, i1);
 		
 		u1 = new User("Jane" , 20791987 , "Jane55" ,  "jane55@gmail.com");
 		u2 = new User("James" , 29875673 , "James27" , "james201@hotmail.com");
@@ -74,7 +70,6 @@ public class OnlineAuctionShopTest {
 
 		p1 = new Payment(1, a1, i1);
 		p2 = new Payment(2, a2, i2);
-		p3 = new Payment(1, a1, i1);
 
 		paymentList = new ArrayList<Payment>();
 //		objectList = new ArrayList<Object>();
@@ -177,8 +172,8 @@ public class OnlineAuctionShopTest {
 		assertSame("Check that Payment is added", p2, paymentList.get(1));
 
 		//Test that adding payment that already exists to the list fails - error
-		assertSame("Check that payment in list, and the payment to add is the same", p1, p3);
-		OnlineAuctionShop.addPayment(paymentList, auctionList, itemList, p3);
+		assertSame("Check that payment in list, and the payment to add is the same", p1, paymentList.get(0));
+		OnlineAuctionShop.addPayment(paymentList, auctionList, itemList, p1);
 		//The Payment list size does not change, and the payment is not added
 		assertEquals("Check that Payment arraylist size is 2", 2, paymentList.size());
 
