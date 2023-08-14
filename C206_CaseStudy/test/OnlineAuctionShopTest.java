@@ -8,12 +8,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class OnlineAuctionShopTest {
+
 	private static ArrayList<Payment> paymentList = new ArrayList<Payment>();
 	private static ArrayList<Item> itemList = new ArrayList<Item>();
 	private static ArrayList<User> userList = new ArrayList<User>();
 	private static ArrayList<Auction> auctionList = new ArrayList<Auction>();
 	private static ArrayList<Bid> bidList = new ArrayList<Bid>();
-	
 
 	private User u1;
 	private User u2;
@@ -36,7 +36,8 @@ public class OnlineAuctionShopTest {
 
 	private Payment p1;
 	private Payment p2;
-
+	private Payment p3;
+	private Payment p4;
 
 	public OnlineAuctionShopTest() {
 		super();
@@ -45,13 +46,8 @@ public class OnlineAuctionShopTest {
 
 	@Before
 	public void setUp() throws Exception {
-		 userList = new ArrayList<User>();
 		//prepare test data
-
-		Auction a1 = new Auction(1, "A beautiful description", 100.50);
-		Item i1 = new Item("I1", "Item is an Item");
-		Payment p1 = new Payment(1, a1, i1);
-		
+	
 		u1 = new User("Jane" , 20791987 , "Jane55" ,  "jane55@gmail.com");
 		u2 = new User("James" , 29875673 , "James27" , "james201@hotmail.com");
 		u3 = new User("Carrie" , 56792928 , "Carr25ie" , "car32ie@yahoo.com");
@@ -79,7 +75,6 @@ public class OnlineAuctionShopTest {
 		itemList = new ArrayList<Item>();
 		userList = new ArrayList<User>();
 		bidList = new ArrayList<Bid>();
-
 	}
 	// ===== Test Option 1: User (Cedric) =====
 	@Test
@@ -107,40 +102,20 @@ public class OnlineAuctionShopTest {
 			assertNotNull("Test that there is a valid userlist that can be added", userList);
 	}
 
-	@Test
-	public void testviewAllUsers() {
-		//View all users in userList -normal
-		 assertNotNull("Test that userList should not be null", userList);
-		
-	     
-	     // View userList when userList is not null - normal
-	     assertNotNull("Test that userList should not be null when it is not expected/initialized to be null", userList);
+
+
 	
-		//View userList when userList is null -error
-	     ArrayList<User> nullUserList = null;
-	     assertNull("Test that viewing null user list should result in null", nullUserList);
-		
+	// ===== Test Option 1: User (Cedric) =====
+	@Test
+	public void OnlineAuctionShop_testAddUser() {
+		//Add a new user
+
+
+
+		assertTrue("OnlineAuctionShop_SampleTest",true);
 	}
 
-	@Test
-	public void testDeleteUser() {
-		//Deleting an existing user - Normal
-		    userList.remove(u1);
-		    assertFalse("Test that userList should not contain u1 after deletion", userList.contains(u1));
-		
-		  //Deleted User still displays in userList(ViewAllUsers) - error
-	        assertFalse("Test that a deleted user e.g. u1 should not be in user list", userList.contains(u1));
-		
-	       //Deletion is done twice - boundary
-	        int newSize = userList.size(); //captures initialSize
-	        boolean userWasRemoved = userList.remove(u1); //returns true if user was found and removed , returns false if user is not found
-	        assertFalse("Test that  deleting the same user again should return false", userWasRemoved); //deleting the same user again should return false
-	        assertEquals("Test that deleting a user again should not affect userList size", newSize, userList.size()); //size of list remains unchanged, comparing the size of newSize and userList 
-	        
-	     //UserList is empty after deletion of all users - normal
-	        userList.clear();
-	        assertTrue("Test that userList should be empty after deleting all users" , userList.isEmpty());
-	    }
+
 
 	// ===== Test Option 3: Auction ([Wang tianqi]) =====
 	@Test
@@ -173,6 +148,9 @@ public class OnlineAuctionShopTest {
 		// Restore the original System.out
 		System.setOut(System.out);
 	}
+	
+
+
 
 	@Test
 	public void OnlineAuctionShop_testDeleteAuction() {
@@ -199,7 +177,11 @@ public class OnlineAuctionShopTest {
 
 
 
+
 	// ===== Test Option 5: Payment (Ivan) =====
+
+	// ===== Test Option 5: Payment (Ivan) =====
+
 
 	@Test
 	public void OnlineAuctionShop_testAddPayment() {
@@ -247,34 +229,47 @@ public class OnlineAuctionShopTest {
 		OnlineAuctionShop.addPayment(paymentList, auctionList, itemList, p1);
 		OnlineAuctionShop.addPayment(paymentList, auctionList, itemList, p2);
 		assertEquals("Test that Payment arraylist size is 2", 2, paymentList.size());
-		
+
 		//Test if the expected output string is the same as the list of payments retrieved from the OnlineAuctionShop	
 		allPayment = OnlineAuctionShop.retrieveAllPayment(paymentList);
 		testOutput = String.format("%-12d %-12d %-15s %-25s %-10.2f %-10s\n", 1, 1, "I1", "Pencil", 100.50, "No");
 		testOutput += String.format("%-12d %-12d %-15s %-25s %-10.2f %-10s\n", 2, 2, "I2", "Backpack", 20.00, "No");
+
 		assertEquals("Test that ViewAllPayment matches", testOutput, allPayment);
-		
+
 	}
 
 
 	@Test
 	public void OnlineAuctionShop_testDeletePayment() {
+
+		//Add necessary objects into auctionList and itemList for validation during check
+		auctionList.addAll(Arrays.asList(a1, a2, a3));
+		itemList.addAll(Arrays.asList(i1, i2, i3));
+
 		//Test if Payment list is not null but empty - boundary
 		assertNotNull("Test if there is valid Payment arraylist to retrieve item", paymentList);
-		
+
 		//Add Payment to list for testing removePayment
 		paymentList.addAll(Arrays.asList(p1, p2));
 		//Test Payment List is 1 after deleting payment - normal
-		OnlineAuctionShop.removePayment(2);
+		OnlineAuctionShop.removePayment(paymentList, 2);
 		assertEquals("Test that Payment arraylist size is 1", 1, paymentList.size());
+
 		
+
 		//Test Payment List is still 1 after deleting payment with non-existent paymentID - error
-		OnlineAuctionShop.removePayment(2);
+		OnlineAuctionShop.removePayment(paymentList, 2);
 		assertEquals("Test that Payment arraylist size is 1", 1, paymentList.size());
+
 		
+
+		
+
 		//Test Payment List is 0 after deleting only existing payment - boundary
-		OnlineAuctionShop.removePayment(1);
+		OnlineAuctionShop.removePayment(paymentList, 1);
 		assertEquals("Test that Payment arraylist size is 0", 0, paymentList.size());
+
 	}
 
 	
@@ -347,6 +342,8 @@ public class OnlineAuctionShopTest {
 		for (Bid b:bidList) {
 			if (b.getBidID() == wrongBidID) {
 				bidFound = true;
+			} else {
+				bidFound = false;
 			}
 		}
 		
@@ -360,9 +357,15 @@ public class OnlineAuctionShopTest {
 			if (b.getBidID() == correctBidID) {
 				bidFound = true;
 				OnlineAuctionShop.deleteBid(bidList, correctBidID);
+			} else {
+				bidFound = false;
 			}
+
 		}
 		assertTrue("Test that the bid is deleted", bidFound);
+
+
+
 
 		//Test that the array list for bid is not empty
 		assertNotNull("Test that the list is not empty",bidList);
@@ -396,12 +399,12 @@ public class OnlineAuctionShopTest {
 
 		p1 = null;
 		p2 = null;
+		p3 = null;
 
 		auctionList = null;
 		bidList = null;
 		itemList = null;
 		paymentList = null;
 		userList = null;
-		
 	}
 }

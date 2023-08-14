@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 
 public class OnlineAuctionShop {
@@ -32,16 +31,16 @@ public class OnlineAuctionShop {
 
 	private static void launch() {
 
-		Auction a1 = new Auction(1, "A beautiful description", 100.50);
-		Auction a2 = new Auction(2, "A disgusting description", 201);
-		Item i1 = new Item("I1", "Pencil");
-		Item i2 = new Item("J2", "Backpack");
-		Bid b1 = new Bid(1000, "Gavel", 50.40);
-		Bid b2 = new Bid(1001, "Brush", 23.10);
-
-		auctionList.addAll(Arrays.asList(a1, a2));
-		itemList.addAll(Arrays.asList(i1, i2));
-		bidList.addAll(Arrays.asList(b1, b2));
+//		Auction a1 = new Auction(1, "A beautiful description", 100.50);
+//		Auction a2 = new Auction(2, "A disgusting description", 201);
+//		Item i1 = new Item("I1", "Pencil");
+//		Item i2 = new Item("J2", "Backpack");
+//		Bid b1 = new Bid(1000, "Gavel", 50.40);
+//		Bid b2 = new Bid(1001, "Brush", 23.10);
+//
+//		auctionList.addAll(Arrays.asList(a1, a2));
+//		itemList.addAll(Arrays.asList(i1, i2));
+//		bidList.addAll(Arrays.asList(b1, b2));
 
 		int option = OPTION_DEFAULT;
 
@@ -283,10 +282,10 @@ public class OnlineAuctionShop {
 		boolean bidExist = false;
 		int bidIndex = 0;
 
-		int inputBid = retrieveBidID();
+		bidID = retrieveBidID();
 
 		for (int i = 0; i < bidList.size(); i++) {
-			if (inputBid == bidList.get(i).getBidID()) {
+			if (bidID == bidList.get(i).getBidID()) {
 				bidExist = true;
 				bidIndex = i;
 				break;
@@ -294,7 +293,7 @@ public class OnlineAuctionShop {
 		}
 
 		if (bidExist == true) {
-			char confirmation = Helper.readChar("Confirm deletion of payment? (Y/N) > ");
+			char confirmation = Helper.readChar("Confirm deletion of bid? (Y/N) > ");
 
 			if (confirmation == 'y' || confirmation == 'Y') {
 				bidList.remove(bidIndex);
@@ -401,7 +400,7 @@ public class OnlineAuctionShop {
 
 		if (itemExist == true && auctionExist == true) {
 			for (Payment p : paymentList) {
-				if (p.getAuction() == payment.getAuction() && p.getItem() == payment.getItem()) {
+				if (p.getAuction().equals(payment.getAuction()) && p.getItem().equals(payment.getItem())) {
 					System.out.println("Payment already exists");
 					return;
 				}
@@ -459,7 +458,7 @@ public class OnlineAuctionShop {
 			char confirmation = Helper.readChar("Confirm deletion of payment? (Y/N) > ");
 
 			if (confirmation == 'y' || confirmation == 'Y') {
-				removePayment(paymentID);
+				removePayment(paymentList, paymentID);
 			} else if (confirmation == 'n' || confirmation == 'N') {
 				System.out.println("Deleting cancelled");
 			} else {
@@ -470,9 +469,13 @@ public class OnlineAuctionShop {
 		}
 	}
 	
-	public static void removePayment(int paymentID) {
-		paymentList.remove(paymentID - 1);
-		System.out.println("Payment successfully deleted");
+	public static void removePayment(ArrayList<Payment> paymentList, int paymentID) {
+		for (int i = 0; i < paymentList.size(); i++) {
+			if (paymentList.get(i).getPaymentID() == paymentID) {
+				paymentList.remove(i);
+				System.out.println("Payment successfully deleted");
+			}
+		}
 	}
 
 	// ===== Option 1: [Auction] ([Wang tianqi])
