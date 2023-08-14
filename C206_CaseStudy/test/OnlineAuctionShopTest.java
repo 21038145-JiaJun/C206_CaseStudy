@@ -149,7 +149,7 @@ public class OnlineAuctionShopTest {
 
 	// ===== Test Option 3: Auction ([Wang tianqi]) =====
 	@Test
-	public void testAddAuction() {
+	public void OnlineAuctionShop_testAddAuction() {
 		Auction auction1 = new Auction(1, "1", 1);
 
 		OnlineAuctionShop.addAuction(auctionList, auction1);
@@ -160,7 +160,7 @@ public class OnlineAuctionShopTest {
 
 
 	@Test
-	public void testViewAllAuction() {
+	public void OnlineAuctionShop_testViewAllAuction() {
 
 
 		Auction auction1 = new Auction(1, "Description 1", 100.5);
@@ -180,7 +180,7 @@ public class OnlineAuctionShopTest {
 	}
 
 	@Test
-	public void testDeleteAuction() {
+	public void OnlineAuctionShop_testDeleteAuction() {
 		Auction auction1 = new Auction(1, "Description 1", 100.5);
 		Auction auction2 = new Auction(2, "Description 2", 100.0);
 		auctionList.add(auction1);
@@ -207,7 +207,7 @@ public class OnlineAuctionShopTest {
 	// ===== Test Option 5: Payment (Ivan) =====
 
 	@Test
-	public void testAddPayment() {
+	public void OnlineAuctionShop_testAddPayment() {
 		//Add necessary objects into auctionList and itemList for validation during check
 		auctionList.addAll(Arrays.asList(a1, a2, a3));
 		itemList.addAll(Arrays.asList(i1, i2, i3));
@@ -235,7 +235,7 @@ public class OnlineAuctionShopTest {
 
 
 	@Test
-	public void testViewAllPayment() {
+	public void OnlineAuctionShop_testViewAllPayment() {
 		//Add necessary objects into auctionList and itemList for validation during check
 		auctionList.addAll(Arrays.asList(a1, a2, a3));
 		itemList.addAll(Arrays.asList(i1, i2, i3));
@@ -263,7 +263,7 @@ public class OnlineAuctionShopTest {
 
 
 	@Test
-	public void testDeletePayment() {
+	public void OnlineAuctionShop_testDeletePayment() {
 		//Test if Payment list is not null but empty - boundary
 		assertNotNull("Test if there is valid Payment arraylist to retrieve item", paymentList);
 		
@@ -284,7 +284,10 @@ public class OnlineAuctionShopTest {
 
 	
 	@Test
-	public void testAddBid() {
+	public void OnlineAuctionShop_testAddBid() {
+		
+		
+		
 		// Test if the new bid is empty
 		assertNotNull("Test if the bid arraylist to retrieve item", bidList);
 
@@ -309,7 +312,7 @@ public class OnlineAuctionShopTest {
 	}
 	
 	@Test
-	public void testViewAllBids() {
+	public void OnlineAuctionShop_testViewAllBids() {
 		// Test that there are no bids in the array list.
 		assertNotNull("Test if the bid arraylist to retrieve item", bidList);
 		
@@ -332,7 +335,7 @@ public class OnlineAuctionShopTest {
 	}
 
 	@Test
-	public void testDeleteBid() {
+	public void OnlineAuctionShop_testDeleteBid() {
 		bidList.add(b1);
 		bidList.add(b2);
 		bidList.add(b3);
