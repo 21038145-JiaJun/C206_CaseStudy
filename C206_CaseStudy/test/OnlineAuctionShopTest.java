@@ -211,9 +211,14 @@ public class OnlineAuctionShopTest {
 
 	@Test
 	public void OnlineAuctionShop_testDeletePayment() {
+<<<<<<< HEAD
 		//Add necessary objects into auctionList and itemList for validation during check
 		auctionList.addAll(Arrays.asList(a1, a2, a3));
 		itemList.addAll(Arrays.asList(i1, i2, i3));
+=======
+		//Test if Payment list is not null but empty - boundary
+		assertNotNull("Test if there is valid Payment arraylist to retrieve item", paymentList);
+>>>>>>> branch 'master' of https://github.com/21038145-JiaJun/C206_CaseStudy.git
 		
 		
 		
@@ -304,7 +309,7 @@ public class OnlineAuctionShopTest {
 				bidFound = true;
 				OnlineAuctionShop.deleteBid(bidList, correctBidID);
 			}
-		}
+		
 		assertTrue("Test that the bid is deleted", bidFound);
 
 		//Test that the array list for bid is not empty
