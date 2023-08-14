@@ -49,13 +49,6 @@ public class OnlineAuctionShopTest {
 		 userList = new ArrayList<User>();
 		//prepare test data
 
-		User u1 = new User("Jane" , 20791987 , "Jane55" ,  "jane55@gmail.com");
-		User u2 = new User("James", 29875673, "James27", "james201@hotmail.com");
-		User u3 = new User("Carrie", 56792928, "Carr25ie", "car32ie@yahoo.com");
-		User u4 = new User("Ronnie", 18736272, "RontheBest25", "ronbest55@gmail.com");
-		User u5 = new User("Rena", 24748493, "Ren35A", "rena89@yahoo.com");
-		User u6 = new User("Jason", 98365748, "JaS3n", "jasON23@yahoo.com");
-		
 		Auction a1 = new Auction(1, "A beautiful description", 100.50);
 		Item i1 = new Item("I1", "Item is an Item");
 		Payment p1 = new Payment(1, a1, i1);
@@ -64,8 +57,6 @@ public class OnlineAuctionShopTest {
 		itemList.add(i1);
 		paymentList.add(p1);
 		
-		
-
 		u1 = new User("Jane" , 20791987 , "Jane55" ,  "jane55@gmail.com");
 		u2 = new User("James" , 29875673 , "James27" , "james201@hotmail.com");
 		u3 = new User("Carrie" , 56792928 , "Carr25ie" , "car32ie@yahoo.com");
