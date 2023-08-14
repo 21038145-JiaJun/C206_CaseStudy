@@ -156,7 +156,7 @@ public class OnlineAuctionShop {
 		String output = String.format("%-12s %-15s %-25s %-10s\n", "Name", "Id", "Password", "Email");
 
 		for (User user : userList) {
-			output += String.format("%-12d %-15d %-25s %-10s\n", user.getName(), user.getId(), user.getPw(),
+			output += String.format("%-12s %-15d %-25s %-10s\n", user.getName(), user.getId(), user.getPw(),
 					user.getEmail());
 
 		}
