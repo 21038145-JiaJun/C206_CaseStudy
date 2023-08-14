@@ -165,6 +165,7 @@ public class OnlineAuctionShop {
 		
 	return false;
 		}
+		
 
 	public static void viewAllUsers(ArrayList<User> UserList) {
 		String output = String.format(TITLE_HEADER, "Name", "Id", "Password", "Email");
