@@ -72,7 +72,7 @@ public class OnlineAuctionShopTest {
 		p3 = new Payment(1, a1, i1);
 
 		paymentList = new ArrayList<Payment>();
-		objectList = new ArrayList<Object>();
+//		objectList = new ArrayList<Object>();
 		auctionList = new ArrayList<Auction>();
 		itemList = new ArrayList<Item>();
 		userList = new ArrayList<User>();
@@ -280,7 +280,6 @@ public class OnlineAuctionShopTest {
 		
 		int bidSize = bidList.size();
 		
-<<<<<<< HEAD
 		// Test that the array list for bid is not empty
 		assertNotNull("Test that the list is not empty", bidList);
 
