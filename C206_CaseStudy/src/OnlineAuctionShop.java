@@ -68,7 +68,18 @@ public class OnlineAuctionShop {
 
 		}
 	}
-
+	
+	public static int menu(String function) {
+		OnlineAuctionShop.setHeader(String.format("%s MENU", function.toUpperCase()));
+		System.out.println(String.format("1. Add a New %s", function));
+		System.out.println(String.format("2. View All %ss", function));
+		System.out.println(String.format("3. Delete an Existing %s", function));
+		System.out.println("4. Exit");
+		
+		int option = Helper.readInt("Enter an option > ");
+		return option;
+	}
+	
 	// Display the main menu options
 	private static void mainMenu() {
 		OnlineAuctionShop.setHeader("CAMPUS ONLINE AUCTION SHOP (COAS)");
@@ -91,9 +102,10 @@ public class OnlineAuctionShop {
 	// =====
 	private static void user() {
 		int option = OPTION_DEFAULT;
-		userMenu();
-		option = Helper.readInt("Enter an option >");
+		
 		while (option != EXIT) {
+			option = menu("User");
+			
 			if (option == ADD) {
 				// Add User
 				addUser(userList);
@@ -104,24 +116,9 @@ public class OnlineAuctionShop {
 				// Delete an existing user
 				deleteUser(userList);
 			}
-			userMenu();
-            option = Helper.readInt("Enter an option >");
+			
         }
 		
-	}
-
-		
-    
-	
-
-
-
-	private static void userMenu() {
-		OnlineAuctionShop.setHeader("USER MENU");
-		System.out.println("1. Add a new user");
-		System.out.println("2. View All Users");
-		System.out.println("3. Delete an existing user");
-		System.out.println("4. Exit");
 	}
 	
 	private static boolean isValidId(int id) { //validate id
@@ -207,19 +204,12 @@ public class OnlineAuctionShop {
 	// ===== Option 4: Bids (Jia Jun)
 	// =====
 
-	public static void bidMenu() {
-		OnlineAuctionShop.setHeader("BID MENU");
-		System.out.println("1. Add a New Bid");
-		System.out.println("2. View All Bids");
-		System.out.println("3. Delete an Existing Bid");
-		System.out.println("4. Exit");
-	}
-
 	public static void bid() {
+		int option = OPTION_DEFAULT;
 
-		bidMenu();
-		int option = Helper.readInt("Enter an option > ");
 		while (option != EXIT) {
+			option = menu("Bid");
+			
 			if (option == ADD) {
 				addBid(bidList);
 			} else if (option == VIEW_ALL) {
@@ -232,9 +222,6 @@ public class OnlineAuctionShop {
 				System.out.println(ERROR_MSG_OPTION);
 				bid();
 			}
-		}
-		if (option == EXIT) {
-			mainMenu();
 		}
 	}
 
@@ -343,9 +330,8 @@ public class OnlineAuctionShop {
 		int option = OPTION_DEFAULT;
 
 		while (option != EXIT) {
-
-			paymentMenu();
-			option = Helper.readInt("Enter an option > ");
+			
+			option = menu("Payment");
 
 			if (option == ADD) {
 				// Add Payment
@@ -495,21 +481,12 @@ public class OnlineAuctionShop {
 	// ===== Option 1: [Auction] ([Wang tianqi])
 	// =====
 
-	public static void auctionMenu() {
-		OnlineAuctionShop.setHeader("AUCTION MENU");
-		System.out.println("1. Add a New Auction");
-		System.out.println("2. View All Auction");
-		System.out.println("3. Delete an Existing Auction");
-		System.out.println("4. Exit");
-	}
-
 	public static void auction() {
 		int auctionOption = OPTION_DEFAULT;
 
 		while (auctionOption != 4) {
-			auctionMenu();
 
-			auctionOption = Helper.readInt("Enter an option > ");
+			auctionOption = menu("Auction");
 
 			if (auctionOption == ADD) {
 				addAuction(auctionList, null);
@@ -564,22 +541,11 @@ public class OnlineAuctionShop {
 
 
 // Option 3: Maintain Items (Le Young)
-	
-public static void ItemMenu() {
-	OnlineAuctionShop.setHeader("ITEM MENU");
-	System.out.println("1. Add Item");
-	System.out.println("2. View All Items");
-	System.out.println("3. Delete an Existing Item");
-	System.out.println("4. Exit");
-}
-
 public static void items() {
-	int option = OPTION_ITEM;
+	int option = OPTION_DEFAULT;
 
 	while (option != EXIT) {
-
-		ItemMenu();
-		option = Helper.readInt("Enter an option > ");
+		option = menu("Item");
 
 		if (option == ADD) {
 			// Add Item
