@@ -318,14 +318,6 @@ public class OnlineAuctionShop {
 	// ===== Option 5: Payment (Ivan)
 	// =====
 
-	public static void paymentMenu() {
-		OnlineAuctionShop.setHeader("PAYMENT MENU");
-		System.out.println("1. Add Payment");
-		System.out.println("2. View All Payment");
-		System.out.println("3. Delete an Existing Payment");
-		System.out.println("4. Exit");
-	}
-
 	public static void payment() {
 		int option = OPTION_DEFAULT;
 
